@@ -1,0 +1,8 @@
+data/
+data_small/
+__pycache__/
+*.npy
+results/runs/
+results/dbg/
+results/alpha/*.pt
+results/logs/

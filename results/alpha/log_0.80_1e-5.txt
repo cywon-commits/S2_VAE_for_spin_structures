@@ -1,0 +1,16 @@
+T0.80o_R1_b1_a1e-05 step 0 train nll 7.0869 kl 896.71 | val nll 2.5290 kl 896.91 | 12s
+T0.80o_R1_b1_a1e-05 step 100 train nll 5.2570 kl 899.56 | val nll 2.5318 kl 899.66 | 90s
+T0.80o_R1_b1_a1e-05 step 200 train nll 5.0578 kl 1048.61 | val nll 2.3705 kl 1052.31 | 165s
+T0.80o_R1_b1_a1e-05 step 300 train nll 3.3127 kl 1053.30 | val nll 2.1463 kl 1054.42 | 241s
+T0.80o_R1_b1_a1e-05 step 400 train nll 1.4445 kl 950.36 | val nll 2.1132 kl 952.44 | 316s
+T0.80o_R1_b1_a1e-05 step 500 train nll 1.3134 kl 830.74 | val nll 1.9216 kl 830.21 | 393s
+T0.80o_R1_b1_a1e-05 step 600 train nll 1.2471 kl 817.02 | val nll 1.9947 kl 814.74 | 473s
+T0.80o_R1_b1_a1e-05 step 700 train nll 1.2340 kl 815.02 | val nll 1.9708 kl 812.56 | 551s
+T0.80o_R1_b1_a1e-05 step 800 train nll 1.1853 kl 816.29 | val nll 1.9439 kl 811.65 | 627s
+T0.80o_R1_b1_a1e-05 step 900 train nll 1.1996 kl 781.60 | val nll 1.9840 kl 783.82 | 699s
+T0.80o_R1_b1_a1e-05 step 1000 train nll 1.2230 kl 785.34 | val nll 1.9646 kl 787.31 | 775s
+T0.80o_R1_b1_a1e-05 step 1100 train nll 1.3204 kl 775.37 | val nll 1.9619 kl 778.27 | 854s
+T0.80o_R1_b1_a1e-05 step 1200 train nll 1.2419 kl 782.38 | val nll 1.9664 kl 783.35 | 930s
+T0.80o_R1_b1_a1e-05 step 1300 train nll 1.1589 kl 779.62 | val nll 1.9625 kl 778.61 | 1008s
+T0.80o_R1_b1_a1e-05 step 1400 train nll 1.1809 kl 775.86 | val nll 1.9550 kl 776.73 | 1086s
+T0.80o_R1_b1_a1e-05 step 1499 train nll 1.2519 kl 779.25 | val nll 1.9539 kl 776.96 | 1163s

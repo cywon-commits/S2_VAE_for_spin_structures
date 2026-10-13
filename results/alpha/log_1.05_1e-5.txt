@@ -1,0 +1,5 @@
+T1.05o_R1_b1_a1e-05 step 0 train nll 6.0735 kl 892.48 | val nll 2.5298 kl 893.56 | 10s
+T1.05o_R1_b1_a1e-05 step 100 train nll 3.1760 kl 707.74 | val nll 2.5282 kl 706.46 | 85s
+T1.05o_R1_b1_a1e-05 step 200 train nll 2.6022 kl 700.36 | val nll 2.5085 kl 708.42 | 162s
+T1.05o_R1_b1_a1e-05 step 300 train nll 1.9932 kl 694.29 | val nll 2.4174 kl 688.54 | 236s
+T1.05o_R1_b1_a1e-05 step 400 train nll 1.9413 kl 494.79 | val nll 2.2424 kl 513.64 | 314s
