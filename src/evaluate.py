@@ -58,8 +58,12 @@ def evaluate(path, Lcuts=(6,), nsamp=4, sample=True):
                lam_power=P[1:].tolist())
     return out
 
+def _job(r):
+    torch.set_num_threads(1); torch.manual_seed(1234)
+    out = evaluate(r, (1, 2, 4, 6)); print(out["run"], f"a2={out['a2']:.3f} a4={out['a4']:+.3f} odd/even={out['odd_even']:.1e} nll6={out['nll']['6']:.4f}", flush=True); return out
+
 if __name__ == "__main__":
-    runs = sorted(glob.glob(f"{sys.argv[1]}/*.pt")); res = []
-    for r in runs:
-        res.append(evaluate(r, (1, 2, 4, 6))); print(res[-1]["run"], f"a2={res[-1]['a2']:.3f} a4={res[-1]['a4']:+.3f} odd/even={res[-1]['odd_even']:.1e} nll6={res[-1]['nll']['6']:.4f}", flush=True)
+    import multiprocessing as mp
+    runs = sorted(glob.glob(f"{sys.argv[1]}/*.pt"))
+    with mp.Pool(4) as pool: res = pool.map(_job, runs, chunksize=1)
     json.dump(res, open(sys.argv[2], "w"), indent=1)
