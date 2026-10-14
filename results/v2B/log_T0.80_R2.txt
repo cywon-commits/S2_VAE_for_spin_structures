@@ -21,3 +21,4 @@ v2_T0.80o_R2_b1 step 4750 train nll 1.0813 kl 118.6 | val nll 1.0905 kl 118.1 | 
 v2_T0.80o_R2_b1 step 5000 train nll 1.0749 kl 116.9 | val nll 1.0917 kl 116.3 | 1044s
 v2_T0.80o_R2_b1 step 5250 train nll 1.1006 kl 117.6 | val nll 1.0902 kl 117.9 | 1106s
 v2_T0.80o_R2_b1 step 5500 train nll 1.0740 kl 118.3 | val nll 1.0907 kl 117.9 | 1165s
+v2_T0.80o_R2_b1 step 5750 train nll 1.0914 kl 116.5 | val nll 1.0916 kl 116.6 | 1227s
