@@ -1,0 +1,5 @@
+v2_T0.80o_R1_b1_pw samp-each a_loc 5.372 s2 0.0364 (neg 0.00) | samp-avg a_loc 5.346 s2 0.0357 | mean a_loc 5.335 s2 0.0369
+v2_T0.95o_R1_b1_pruned samp-each a_loc 4.177 s2 0.0581 (neg 0.00) | samp-avg a_loc 4.133 s2 0.0564 | mean a_loc 4.144 s2 0.0582
+v2_T1.05o_R1_b1_pruned samp-each a_loc 3.103 s2 0.0703 (neg 0.00) | samp-avg a_loc 3.091 s2 0.0692 | mean a_loc 3.087 s2 0.0709
+v2_T1.10o_R1_b1_pw samp-each a_loc 2.432 s2 0.0789 (neg 0.00) | samp-avg a_loc 2.424 s2 0.0775 | mean a_loc 2.412 s2 0.0803
+v2_T1.12o_R1_b1_pw samp-each a_loc 1.815 s2 0.0911 (neg 0.00) | samp-avg a_loc 1.808 s2 0.0887 | mean a_loc 1.796 s2 0.0937

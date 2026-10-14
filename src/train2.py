@@ -2,26 +2,27 @@
 python3 train2.py --T 1.05 --st o --R 1 --steps 30000 --bs 16 --out ../results/v2"""
 import argparse, json, os, time, numpy as np, torch
 from mvae2 import MVAE2, compute_stats, cell_features
+from mvae3 import MVAE3
 p = argparse.ArgumentParser()
 p.add_argument("--T", type=float); p.add_argument("--st", default="o"); p.add_argument("--R", type=int, default=1)
 p.add_argument("--beta", type=float, default=1.0); p.add_argument("--alpha", type=float, default=1e-5)
 p.add_argument("--steps", type=int, default=30000); p.add_argument("--bs", type=int, default=16)
 p.add_argument("--lr", type=float, default=3e-3); p.add_argument("--seed", type=int, default=0)
-p.add_argument("--warm", default=""); p.add_argument("--prune", action="store_true"); p.add_argument("--kl_warm", type=float, default=0.3)
+p.add_argument("--warm", default=""); p.add_argument("--prune", action="store_true"); p.add_argument("--hier", action="store_true"); p.add_argument("--kl_warm", type=float, default=0.3)
 p.add_argument("--threads", type=int, default=1); p.add_argument("--data", default="../data"); p.add_argument("--out", default="../results/v2"); p.add_argument("--tag", default="")
 a = p.parse_args()
 torch.set_num_threads(a.threads); torch.manual_seed(a.seed); np.random.seed(a.seed)
 S = torch.tensor(np.load(f"{a.data}/ll_L12_T{a.T:.3f}_{a.st}.npy")); nv = max(len(S) // 10, 10)
 St = compute_stats(S, a.R); F = cell_features(S, a.R); ncell = (12 // a.R) ** 3
 tr, va = slice(0, len(S) - nv), slice(len(S) - nv, len(S))
-m = MVAE2(L=12, R=a.R)
+m = (MVAE3 if a.hier else MVAE2)(L=12, R=a.R)
 if a.warm: m.load_state_dict(torch.load(a.warm, weights_only=False)["state"], strict=False)
 if a.prune:
     with torch.no_grad(): mu_, lv_ = m.encode(feat=F[:len(S) - nv]); m.zmask.copy_(m.active_channels(mu_, lv_))
     print("pruned: active components", int(m.zmask.sum().item()), "of", m.zmask.numel(), flush=True)
 opt = torch.optim.Adam(m.parameters(), lr=a.lr)
 sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=a.lr, total_steps=a.steps, pct_start=0.05, final_div_factor=1e3)
-name = f"v2_T{a.T:.2f}{a.st}_R{a.R}_b{a.beta:g}{a.tag}"; os.makedirs(a.out, exist_ok=True); ck = f"{a.out}/{name}.ckpt"
+name = f"{'v3h' if a.hier else 'v2'}_T{a.T:.2f}{a.st}_R{a.R}_b{a.beta:g}{a.tag}"; os.makedirs(a.out, exist_ok=True); ck = f"{a.out}/{name}.ckpt"
 step0, log = 0, []
 if os.path.exists(ck):
     c = torch.load(ck, weights_only=False); m.load_state_dict(c["state"]); opt.load_state_dict(c["opt"]); sched.load_state_dict(c["sched"]); step0, log = c["step"], c["log"]
