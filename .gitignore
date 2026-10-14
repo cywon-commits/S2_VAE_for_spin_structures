@@ -6,3 +6,5 @@ results/runs/
 results/dbg/
 results/alpha/*.pt
 results/logs/
+results/v2/*.ckpt
+results/v2/*.tmp
