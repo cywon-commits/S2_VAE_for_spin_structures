@@ -1,0 +1,3 @@
+v3h_T0.95o_R2_b1 ELBO gain from direct posterior optimisation: mean 7.7 max 15.0 nats/config | KL 30.6 -> 37.1
+v3h_T0.95o_R3_b1 ELBO gain from direct posterior optimisation: mean 23.6 max 38.1 nats/config | KL 39.5 -> 60.4
+v3h_T0.95o_R4_b1 ELBO gain from direct posterior optimisation: mean 30.4 max 45.3 nats/config | KL 47.8 -> 77.8
