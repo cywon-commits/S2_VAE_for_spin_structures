@@ -44,11 +44,24 @@ class MVAE2(MVAE):
         self.c1 = FCLayer(FEAT_IRREPS, cell_ch); self.c2 = FCLayer(self.c1.gate.irreps_out, cell_ch)
         h = self.c2.gate.irreps_out
         self.mu = o3.Linear(h, LAT_IRREPS); self.lv = o3.FullyConnectedTensorProduct(h, h, o3.Irreps(f"{LAT_IRREPS.num_irreps}x0e"))
+        self.register_buffer("zmask", torch.ones(LAT_IRREPS.dim))      # 0 = pruned (posterior-collapsed) latent component
+    def kl(self, mu, lv):
+        lvx = self.expand_logvar(lv); return (0.5 * (mu ** 2 + lvx.exp() - 1 - lvx) * self.zmask).sum((-1, -2))
+    def active_channels(self, mu, lv, thr=0.5):
+        """mask over latent components: a channel is active if its mean KL (over configs and cells) exceeds thr nats."""
+        lvx = self.expand_logvar(lv); klc = (0.5 * (mu ** 2 + lvx.exp() - 1 - lvx)).mean((0, 1)); mask = torch.zeros_like(klc); off = 0
+        for l in range(4):
+            for c in range(4):
+                w = 2 * l + 1
+                if klc[off:off + w].sum() > thr: mask[off:off + w] = 1
+                off += w
+        return mask
     def encode(self, n=None, feat=None):
         if feat is None: feat = cell_features(n.to(torch.get_default_dtype()) if n.dtype != torch.float64 else n, self.R).to(next(self.parameters()).dtype)
         h = self.c2(self.c1(feat))
         return 0.1 * self.mu(h), (0.1 * self.lv(h, h) - 3.0).clamp(-12, 4)
     def decode_cells(self, z):                      # piecewise constant per cell: z [B,C,64] -> lam [B,C,48]
+        z = z * self.zmask
         return 0.01 * (self.d2(self.d1(z, z), z) + self.dlin(z))
     def forward_stats(self, feat, stats, ncell, beta=1.0, alpha=0.0, sample=True):
         """feat [B,C,52]; stats [B,C,48] = sum_{i in cell} Y_l(n_i) (integral norm, l=1..6); ncell = sites per cell."""

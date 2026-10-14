@@ -8,7 +8,7 @@ torch.set_num_threads(1)
 SL = [(sum(2 * k + 1 for k in range(1, l)), sum(2 * k + 1 for k in range(1, l + 1))) for l in range(1, 7)]
 
 def load(path):
-    ck = torch.load(path, weights_only=False); a = ck["args"]; m = MVAE2(L=12, R=a["R"]); m.load_state_dict(ck["state"]); m.eval(); return m, a
+    ck = torch.load(path, weights_only=False); a = ck["args"]; m = MVAE2(L=12, R=a["R"]); m.load_state_dict(ck["state"], strict=False); m.eval(); return m, a
 
 _G = torch.randn(14, 3, dtype=torch.float64); _G = _G / _G.norm(dim=1, keepdim=True)
 _Y2G = sh([2], _G); _SYM = torch.stack([_G[:, 0] ** 2, _G[:, 1] ** 2, _G[:, 2] ** 2, 2 * _G[:, 0] * _G[:, 1], 2 * _G[:, 0] * _G[:, 2], 2 * _G[:, 1] * _G[:, 2]], 1)
@@ -26,7 +26,7 @@ def a_l(lam):
     for l in (2, 4, 6): out.append((lam[..., SL[l - 1][0]:SL[l - 1][1]].double() * sh([l], d)).sum(-1))
     return out
 def power_ratio(lam):
-    P = [(lam[..., s:e] ** 2).sum(-1) for s, e in SL]; return sum(P[i] for i in (0, 2, 4)), sum(P[i] for i in (1, 3, 5))
+    P = [(lam[..., s:e] ** 2).sum(-1) for s, e in SL]; return sum(P[i] for i in (1, 3, 5)), sum(P[i] for i in (0, 2, 4))   # (even l, odd l)
 
 @torch.no_grad()
 def elbo_terms(m, F, St, nc, eps_mu, eps_lv, nsamp=64, seed=0):
@@ -72,7 +72,7 @@ def evaluate_A(path, orc_val):
     ev, od = power_ratio(lam_mean); o = [r for r in orc_val if abs(r["T"] - a["T"]) < 1e-6 and r["st"] == a["st"]][0]
     out = dict(run=path.split("/")[-1], T=a["T"], R=R, kl=kl, nll_samp=nll_samp.mean().item() / 1728, nll_mean=nll_mean, nll_oracle_val=o["nll"]["6"],
                a2_mean=a_mean[0].item(), a2_samp=a_samp[0].item(), a4_mean=a_mean[1].item(), a4_samp=a_samp[1].item(), a6_mean=a_mean[2].item(),
-               a2_oracle=o["a2"], a4_oracle=o["a4"], odd_even=(od.mean() / ev.mean()).item(),
+               a2_oracle=o["a2"], a4_oracle=o["a4"], odd_even=(od.mean() / ev.mean()).item()   # od = odd-l power, ev = even-l power,
                latent_power=[float((mu[..., s:s + w] ** 2).sum()) for s, w in [(0, 4), (4, 12), (16, 20), (36, 28)]])
     out["a2_rel_diff_mean_vs_samp"] = abs(out["a2_mean"] - out["a2_samp"]) / abs(out["a2_samp"])
     out["sigma2_mean"] = -(35 / 18) * out["a4_mean"] / out["a2_mean"] ** 2 if out["a2_mean"] > 0.3 else None

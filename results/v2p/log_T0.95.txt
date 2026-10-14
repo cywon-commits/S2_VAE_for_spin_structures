@@ -1,0 +1,27 @@
+pruned: active components 10 of 64
+v2_T0.95o_R1_b1_pruned step 0 train nll 1.4977 kl 27.7 | val nll 1.4894 kl 27.8 | 0s
+v2_T0.95o_R1_b1_pruned step 250 train nll 1.4996 kl 28.7 | val nll 1.4816 kl 28.8 | 24s
+v2_T0.95o_R1_b1_pruned step 500 train nll 1.4775 kl 28.7 | val nll 1.4818 kl 28.8 | 50s
+v2_T0.95o_R1_b1_pruned step 750 train nll 1.5047 kl 28.5 | val nll 1.4819 kl 28.7 | 75s
+v2_T0.95o_R1_b1_pruned step 1000 train nll 1.4970 kl 28.5 | val nll 1.4819 kl 28.5 | 100s
+v2_T0.95o_R1_b1_pruned step 1250 train nll 1.4834 kl 28.9 | val nll 1.4817 kl 28.8 | 127s
+v2_T0.95o_R1_b1_pruned step 1500 train nll 1.4731 kl 28.6 | val nll 1.4816 kl 28.5 | 152s
+v2_T0.95o_R1_b1_pruned step 1750 train nll 1.4668 kl 28.7 | val nll 1.4817 kl 28.8 | 176s
+v2_T0.95o_R1_b1_pruned step 2000 train nll 1.4689 kl 28.4 | val nll 1.4816 kl 28.4 | 201s
+v2_T0.95o_R1_b1_pruned step 2250 train nll 1.4845 kl 28.4 | val nll 1.4820 kl 28.4 | 229s
+v2_T0.95o_R1_b1_pruned step 2500 train nll 1.4731 kl 28.7 | val nll 1.4815 kl 28.7 | 253s
+v2_T0.95o_R1_b1_pruned step 2750 train nll 1.4927 kl 28.3 | val nll 1.4816 kl 28.3 | 277s
+v2_T0.95o_R1_b1_pruned step 3000 train nll 1.4977 kl 28.5 | val nll 1.4815 kl 28.6 | 302s
+v2_T0.95o_R1_b1_pruned step 3250 train nll 1.4786 kl 28.4 | val nll 1.4817 kl 28.3 | 328s
+v2_T0.95o_R1_b1_pruned step 3500 train nll 1.4728 kl 29.0 | val nll 1.4813 kl 29.0 | 351s
+v2_T0.95o_R1_b1_pruned step 3750 train nll 1.4817 kl 28.1 | val nll 1.4816 kl 28.2 | 375s
+v2_T0.95o_R1_b1_pruned step 4000 train nll 1.5049 kl 28.3 | val nll 1.4818 kl 28.4 | 398s
+v2_T0.95o_R1_b1_pruned step 4250 train nll 1.4926 kl 28.2 | val nll 1.4818 kl 28.3 | 420s
+v2_T0.95o_R1_b1_pruned step 4500 train nll 1.4927 kl 28.2 | val nll 1.4817 kl 28.3 | 444s
+v2_T0.95o_R1_b1_pruned step 4750 train nll 1.4771 kl 28.1 | val nll 1.4816 kl 28.2 | 469s
+v2_T0.95o_R1_b1_pruned step 5000 train nll 1.4924 kl 28.5 | val nll 1.4816 kl 28.6 | 496s
+v2_T0.95o_R1_b1_pruned step 5250 train nll 1.4982 kl 28.5 | val nll 1.4814 kl 28.6 | 524s
+v2_T0.95o_R1_b1_pruned step 5500 train nll 1.4961 kl 28.3 | val nll 1.4814 kl 28.4 | 550s
+v2_T0.95o_R1_b1_pruned step 5750 train nll 1.4860 kl 28.4 | val nll 1.4815 kl 28.5 | 577s
+v2_T0.95o_R1_b1_pruned step 6000 train nll 1.4791 kl 28.5 | val nll 1.4813 kl 28.5 | 604s
+v2_T0.95o_R1_b1_pruned step 6250 train nll 1.4920 kl 28.2 | val nll 1.4820 kl 28.2 | 629s
