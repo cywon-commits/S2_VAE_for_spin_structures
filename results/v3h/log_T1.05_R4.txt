@@ -1,3 +1,4 @@
 v3h_T1.05o_R4_b1 step 0 train nll 1.8078 kl 85.2 | val nll 1.8343 kl 84.9 | 10s
 v3h_T1.05o_R4_b1 step 250 train nll 1.8155 kl 88.5 | val nll 1.8190 kl 87.3 | 327s
 v3h_T1.05o_R4_b1 step 500 train nll 1.7179 kl 334.7 | val nll 1.7274 kl 326.8 | 643s
+v3h_T1.05o_R4_b1 step 750 train nll 1.6979 kl 364.0 | val nll 1.6856 kl 371.8 | 926s

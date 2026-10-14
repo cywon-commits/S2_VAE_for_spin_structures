@@ -1,0 +1,5 @@
+main active l=2 channel 3
+v3s_T1.05o_R1_b1 step 0 train nll 1.9978 kl 19.4 | val nll 2.0189 kl 19.3 | 0s
+v3s_T1.05o_R1_b1 step 250 train nll 1.8266 kl 18.8 | val nll 1.8265 kl 18.9 | 36s
+v3s_T1.05o_R1_b1 step 500 train nll 1.7988 kl 18.3 | val nll 1.8137 kl 18.1 | 75s
+v3s_T1.05o_R1_b1 step 750 train nll 1.8002 kl 18.8 | val nll 1.8125 kl 18.8 | 113s
