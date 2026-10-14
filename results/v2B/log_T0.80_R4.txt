@@ -1,0 +1,16 @@
+v2_T0.80o_R4_b1 step 0 train nll 0.8913 kl 2091.9 | val nll 0.8940 kl 2058.9 | 4s
+v2_T0.80o_R4_b1 step 250 train nll 0.8974 kl 1300.9 | val nll 0.8931 kl 1304.9 | 207s
+v2_T0.80o_R4_b1 step 500 train nll 0.8975 kl 1042.1 | val nll 0.9057 kl 1038.9 | 411s
+v2_T0.80o_R4_b1 step 750 train nll 0.9094 kl 929.9 | val nll 0.9177 kl 931.7 | 607s
+v2_T0.80o_R4_b1 step 1000 train nll 0.9413 kl 850.1 | val nll 0.9302 kl 855.5 | 813s
+v2_T0.80o_R4_b1 step 1250 train nll 0.9408 kl 804.2 | val nll 0.9416 kl 800.6 | 1015s
+v2_T0.80o_R4_b1 step 1500 train nll 0.9546 kl 751.5 | val nll 0.9532 kl 754.4 | 1222s
+v2_T0.80o_R4_b1 step 1750 train nll 0.9872 kl 696.5 | val nll 0.9707 kl 701.0 | 1425s
+v2_T0.80o_R4_b1 step 2000 train nll 0.9743 kl 668.0 | val nll 0.9814 kl 666.5 | 1635s
+v2_T0.80o_R4_b1 step 2250 train nll 0.9984 kl 626.9 | val nll 0.9998 kl 628.0 | 1842s
+v2_T0.80o_R4_b1 step 2500 train nll 0.9867 kl 621.5 | val nll 1.0004 kl 617.8 | 2056s
+v2_T0.80o_R4_b1 step 2750 train nll 1.0003 kl 608.5 | val nll 1.0054 kl 604.2 | 2265s
+v2_T0.80o_R4_b1 step 3000 train nll 1.0029 kl 605.3 | val nll 1.0015 kl 606.1 | 2476s
+v2_T0.80o_R4_b1 step 3250 train nll 0.9916 kl 608.6 | val nll 1.0000 kl 606.0 | 2685s
+v2_T0.80o_R4_b1 step 3500 train nll 1.0035 kl 595.8 | val nll 1.0037 kl 596.2 | 2912s
+v2_T0.80o_R4_b1 step 3750 train nll 0.9949 kl 599.1 | val nll 1.0001 kl 598.3 | 3343s
