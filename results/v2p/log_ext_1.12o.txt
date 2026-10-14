@@ -1,0 +1,5 @@
+v2_T1.12o_R1_b1_pw step 0 train nll 2.2131 kl 15.7 | val nll 2.2537 kl 15.1 | 0s
+v2_T1.12o_R1_b1_pw step 250 train nll 2.1986 kl 18.2 | val nll 2.2444 kl 17.3 | 23s
+v2_T1.12o_R1_b1_pw step 500 train nll 2.2288 kl 17.8 | val nll 2.2388 kl 17.5 | 45s
+v2_T1.12o_R1_b1_pw step 750 train nll 2.2004 kl 17.5 | val nll 2.2368 kl 16.8 | 67s
+v2_T1.12o_R1_b1_pw step 1000 train nll 2.2192 kl 16.3 | val nll 2.2365 kl 16.1 | 89s

@@ -72,7 +72,7 @@ def evaluate_A(path, orc_val):
     ev, od = power_ratio(lam_mean); o = [r for r in orc_val if abs(r["T"] - a["T"]) < 1e-6 and r["st"] == a["st"]][0]
     out = dict(run=path.split("/")[-1], T=a["T"], R=R, kl=kl, nll_samp=nll_samp.mean().item() / 1728, nll_mean=nll_mean, nll_oracle_val=o["nll"]["6"],
                a2_mean=a_mean[0].item(), a2_samp=a_samp[0].item(), a4_mean=a_mean[1].item(), a4_samp=a_samp[1].item(), a6_mean=a_mean[2].item(),
-               a2_oracle=o["a2"], a4_oracle=o["a4"], odd_even=(od.mean() / ev.mean()).item()   # od = odd-l power, ev = even-l power,
+               a2_oracle=o["a2"], a4_oracle=o["a4"], odd_even=(od.mean() / ev.mean()).item(),   # od = odd-l power, ev = even-l power
                latent_power=[float((mu[..., s:s + w] ** 2).sum()) for s, w in [(0, 4), (4, 12), (16, 20), (36, 28)]])
     out["a2_rel_diff_mean_vs_samp"] = abs(out["a2_mean"] - out["a2_samp"]) / abs(out["a2_samp"])
     out["sigma2_mean"] = -(35 / 18) * out["a4_mean"] / out["a2_mean"] ** 2 if out["a2_mean"] > 0.3 else None
