@@ -7,7 +7,7 @@ from mvae2 import MVAE2
 class MVAE6(MVAE2):
     def __init__(self, L=12, R=1, **kw):
         super().__init__(L=L, R=R, **kw)
-        self.phi = nn.Sequential(nn.Linear(1, 16), nn.SiLU(), nn.Linear(16, 4))
+        self.phi = nn.Sequential(nn.Linear(1, 16), nn.SiLU(), nn.Linear(16, 2))
         self.register_buffer("act_idx", torch.tensor(-1))
     @property
     def act(self): return int(self.act_idx.item())
@@ -18,9 +18,15 @@ class MVAE6(MVAE2):
             nrm = [mu[..., 16 + 5 * c:21 + 5 * c].norm(dim=-1).mean().item() for c in idx]; c = idx[int(torch.tensor(nrm).argmax())]
         else: c = idx[0]
         self.act_idx.fill_(16 + 5 * c); return c
+    def active_l2(self):
+        zm = self.zmask[16:36].reshape(4, 5); return [16 + 5 * c for c in range(4) if zm[c].sum() > 0]
     def decode_cells(self, z):
-        z = z * self.zmask; a = self.act; zm = z[..., a:a + 5]; r = zm.norm(dim=-1, keepdim=True)
-        zin = z.clone(); zin[..., a:a + 5] = zm / r.clamp_min(1e-6); zin[..., 0:4] = self.phi(r)
+        """separate direction and magnitude for EVERY active l=2 channel (the optimiser moved the information to the unseparated channel when only
+        the main channel was separated): channel -> unit vector, norms -> scalars phi(r) in the l=0 slots (2 slots per channel, up to 2 channels)."""
+        z = z * self.zmask; zin = z.clone(); sc = []
+        for off in self.active_l2():
+            zm = z[..., off:off + 5]; r = zm.norm(dim=-1, keepdim=True); zin[..., off:off + 5] = zm / r.clamp_min(1e-6); sc.append(self.phi(r))
+        sc = torch.cat(sc, -1)[..., :4]; zin[..., 0:sc.shape[-1]] = sc
         return 0.01 * (self.d2(self.d1(zin, zin), zin) + self.dlin(zin))
     def reinit_decoder(self):
         for mod in (self.d1, self.d2, self.dlin):
