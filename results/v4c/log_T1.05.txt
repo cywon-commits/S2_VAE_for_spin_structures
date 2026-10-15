@@ -8,3 +8,4 @@ v2_T1.05o_R1_b1_ctrl step 1500 train nll 1.8321 kl 226.8 | val nll 1.8331 kl 226
 v2_T1.05o_R1_b1_ctrl step 1750 train nll 1.8144 kl 220.9 | val nll 1.8258 kl 220.2 | 214s
 v2_T1.05o_R1_b1_ctrl step 2000 train nll 1.8281 kl 213.6 | val nll 1.8222 kl 213.6 | 252s
 v2_T1.05o_R1_b1_ctrl step 2250 train nll 1.7827 kl 211.5 | val nll 1.8176 kl 207.9 | 289s
+v2_T1.05o_R1_b1_ctrl step 2500 train nll 1.8122 kl 202.2 | val nll 1.8170 kl 202.1 | 327s
