@@ -5,3 +5,4 @@ v4s_T1.05o_R1_b1_allch step 500 train nll 1.8224 kl 85.1 | val nll 1.8219 kl 85.
 v4s_T1.05o_R1_b1_allch step 750 train nll 1.8078 kl 66.6 | val nll 1.8183 kl 65.4 | 95s
 v4s_T1.05o_R1_b1_allch step 1000 train nll 1.7877 kl 44.8 | val nll 1.8165 kl 43.5 | 129s
 v4s_T1.05o_R1_b1_allch step 1250 train nll 1.8045 kl 31.1 | val nll 1.8152 kl 30.8 | 159s
+v4s_T1.05o_R1_b1_allch step 1500 train nll 1.8145 kl 25.7 | val nll 1.8143 kl 25.8 | 197s
