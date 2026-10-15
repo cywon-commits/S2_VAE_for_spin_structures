@@ -31,3 +31,6 @@ v4u_T0.95o_R4_b1 step 7250 train nll 1.3294 kl 266.3 | val nll 1.3246 kl 271.6 |
 resumed at 7000
 v4u_T0.95o_R4_b1 step 7000 train nll 1.3339 kl 277.4 | val nll 1.3266 kl 271.4 | 5s
 v4u_T0.95o_R4_b1 step 7250 train nll 1.3264 kl 270.7 | val nll 1.3262 kl 271.4 | 283s
+v4u_T0.95o_R4_b1 step 7500 train nll 1.3295 kl 268.2 | val nll 1.3257 kl 270.5 | 652s
+v4u_T0.95o_R4_b1 step 7750 train nll 1.3366 kl 269.4 | val nll 1.3261 kl 270.4 | 1033s
+v4u_T0.95o_R4_b1 step 7999 train nll 1.3185 kl 269.6 | val nll 1.3258 kl 270.9 | 1429s

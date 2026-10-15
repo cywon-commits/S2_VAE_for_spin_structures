@@ -1,0 +1,2 @@
+main active l=2 channel 3
+v4w_T1.05o_R3_b1 step 0 train nll 2.0039 kl 1840.2 | val nll 1.9753 kl 1873.2 | 5s
