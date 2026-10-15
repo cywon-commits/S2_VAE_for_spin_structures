@@ -1,0 +1,12 @@
+main active l=2 channel 1
+v4s_T0.95o_R1_b1 step 0 train nll 2.5296 kl 28.1 | val nll 2.5296 kl 28.2 | 0s
+v4s_T0.95o_R1_b1 step 250 train nll 2.5217 kl 27.3 | val nll 2.5212 kl 27.4 | 24s
+v4s_T0.95o_R1_b1 step 500 train nll 1.6197 kl 202.3 | val nll 1.6687 kl 201.9 | 47s
+v4s_T0.95o_R1_b1 step 750 train nll 1.5139 kl 269.8 | val nll 1.5133 kl 268.2 | 69s
+v4s_T0.95o_R1_b1 step 1000 train nll 1.5054 kl 217.4 | val nll 1.4951 kl 218.5 | 92s
+v4s_T0.95o_R1_b1 step 1250 train nll 1.4972 kl 177.5 | val nll 1.4902 kl 178.0 | 116s
+v4s_T0.95o_R1_b1 step 1500 train nll 1.4940 kl 162.8 | val nll 1.4874 kl 162.9 | 138s
+v4s_T0.95o_R1_b1 step 1750 train nll 1.4934 kl 57.9 | val nll 1.5146 kl 52.3 | 161s
+v4s_T0.95o_R1_b1 step 2000 train nll 1.5044 kl 47.3 | val nll 1.4865 kl 48.8 | 185s
+v4s_T0.95o_R1_b1 step 2250 train nll 1.5035 kl 37.6 | val nll 1.4858 kl 38.2 | 209s
+v4s_T0.95o_R1_b1 step 2500 train nll 1.4828 kl 31.4 | val nll 1.4859 kl 31.4 | 235s
