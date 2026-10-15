@@ -14,3 +14,23 @@ v4u_T0.80o_R4_b1 step 3000 train nll 0.9673 kl 254.3 | val nll 0.9672 kl 251.1 |
 v4u_T0.80o_R4_b1 step 3250 train nll 0.9579 kl 251.0 | val nll 0.9673 kl 250.6 | 3089s
 resumed at 3000
 v4u_T0.80o_R4_b1 step 3000 train nll 0.9673 kl 245.8 | val nll 0.9678 kl 251.4 | 6s
+v4u_T0.80o_R4_b1 step 3250 train nll 0.9710 kl 247.2 | val nll 0.9666 kl 251.8 | 249s
+v4u_T0.80o_R4_b1 step 3500 train nll 0.9620 kl 248.4 | val nll 0.9692 kl 245.5 | 500s
+v4u_T0.80o_R4_b1 step 3750 train nll 0.9599 kl 235.5 | val nll 0.9700 kl 244.7 | 761s
+v4u_T0.80o_R4_b1 step 4000 train nll 0.9852 kl 248.2 | val nll 0.9713 kl 241.0 | 1016s
+v4u_T0.80o_R4_b1 step 4250 train nll 0.9669 kl 250.2 | val nll 0.9680 kl 246.0 | 1271s
+v4u_T0.80o_R4_b1 step 4500 train nll 0.9712 kl 247.0 | val nll 0.9689 kl 244.1 | 1527s
+v4u_T0.80o_R4_b1 step 4750 train nll 0.9825 kl 245.5 | val nll 0.9678 kl 245.7 | 1793s
+v4u_T0.80o_R4_b1 step 5000 train nll 0.9623 kl 242.4 | val nll 0.9677 kl 243.9 | 2052s
+v4u_T0.80o_R4_b1 step 5250 train nll 0.9692 kl 243.8 | val nll 0.9703 kl 242.1 | 2299s
+v4u_T0.80o_R4_b1 step 5500 train nll 0.9551 kl 244.4 | val nll 0.9660 kl 246.6 | 2552s
+v4u_T0.80o_R4_b1 step 5750 train nll 0.9661 kl 243.7 | val nll 0.9689 kl 241.4 | 2804s
+v4u_T0.80o_R4_b1 step 6000 train nll 0.9683 kl 245.8 | val nll 0.9685 kl 242.3 | 3062s
+v4u_T0.80o_R4_b1 step 6250 train nll 0.9595 kl 242.4 | val nll 0.9681 kl 243.9 | 3320s
+v4u_T0.80o_R4_b1 step 6500 train nll 0.9665 kl 251.8 | val nll 0.9685 kl 243.0 | 3577s
+v4u_T0.80o_R4_b1 step 6750 train nll 0.9603 kl 245.8 | val nll 0.9687 kl 242.2 | 3840s
+v4u_T0.80o_R4_b1 step 7000 train nll 0.9687 kl 240.4 | val nll 0.9684 kl 244.0 | 4099s
+v4u_T0.80o_R4_b1 step 7250 train nll 0.9715 kl 246.6 | val nll 0.9682 kl 243.0 | 4352s
+v4u_T0.80o_R4_b1 step 7500 train nll 0.9594 kl 238.0 | val nll 0.9690 kl 242.4 | 4590s
+v4u_T0.80o_R4_b1 step 7750 train nll 0.9678 kl 236.2 | val nll 0.9677 kl 243.2 | 4832s
+v4u_T0.80o_R4_b1 step 7999 train nll 0.9709 kl 236.7 | val nll 0.9682 kl 243.4 | 5065s
