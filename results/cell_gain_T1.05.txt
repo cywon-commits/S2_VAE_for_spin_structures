@@ -1,0 +1,4 @@
+T=1.05: NLL gain from exact cell frames (nats/site), 100 configs
+ R=2 n=216 raw 0.0419 overfit 0.0074 net 0.0344
+ R=3 n= 64 raw 0.1139 overfit 0.0272 net 0.0867
+ R=4 n= 27 raw 0.2127 overfit 0.0667 net 0.1460

@@ -1,0 +1,1 @@
+v4u_T0.95o_R4_b1 step 0 train nll 1.4287 kl 5716.2 | val nll 1.4199 kl 5472.2 | 6s
