@@ -21,3 +21,7 @@ v4w_T1.05o_R4_b1 step 4500 train nll 1.6389 kl 280.4 | val nll 1.6364 kl 282.6 |
 main active l=2 channel 1
 resumed at 4000
 v4w_T1.05o_R4_b1 step 4000 train nll 1.6341 kl 282.5 | val nll 1.6378 kl 283.5 | 7s
+v4w_T1.05o_R4_b1 step 4250 train nll 1.6207 kl 277.3 | val nll 1.6357 kl 284.7 | 277s
+v4w_T1.05o_R4_b1 step 4500 train nll 1.6586 kl 282.6 | val nll 1.6376 kl 279.6 | 546s
+main active l=2 channel 1
+resumed at 4000
