@@ -51,6 +51,6 @@ for step in range(step0, a.steps):
     if step % 250 == 0 or step == a.steps - 1:
         v = val(); log.append((step, o["nll"].item(), o["kl"].item(), float(v[0]), float(v[1])))
         print(f"{name} step {step} train nll {o['nll'].item():.4f} kl {o['kl'].item():.1f} | val nll {v[0]:.4f} kl {v[1]:.1f} | {time.time()-t0:.0f}s", flush=True)
-    if step % 1000 == 999 or step == a.steps - 1:
+    if step % 250 == 249 or step == a.steps - 1:
         torch.save(dict(state=m.state_dict(), opt=opt.state_dict(), sched=sched.state_dict(), step=step + 1, log=log, args=vars(a)), ck + ".tmp"); os.replace(ck + ".tmp", ck)
 torch.save(dict(state=m.state_dict(), args=vars(a), log=log), f"{a.out}/{name}.pt")
