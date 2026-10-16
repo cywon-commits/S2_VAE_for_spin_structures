@@ -31,3 +31,21 @@ main active l=2 channel 1
 resumed at 4000
 v4w_T1.05o_R4_b1 step 4000 train nll 1.6341 kl 282.5 | val nll 1.6378 kl 283.5 | 9s
 v4w_T1.05o_R4_b1 step 4250 train nll 1.6207 kl 277.3 | val nll 1.6357 kl 284.7 | 323s
+main active l=2 channel 1
+resumed at 4250
+v4w_T1.05o_R4_b1 step 4250 train nll 1.6322 kl 284.6 | val nll 1.6363 kl 284.7 | 8s
+v4w_T1.05o_R4_b1 step 4500 train nll 1.6206 kl 276.6 | val nll 1.6355 kl 284.1 | 301s
+v4w_T1.05o_R4_b1 step 4750 train nll 1.6583 kl 282.2 | val nll 1.6373 kl 279.2 | 592s
+v4w_T1.05o_R4_b1 step 5000 train nll 1.6398 kl 284.3 | val nll 1.6371 kl 280.6 | 886s
+v4w_T1.05o_R4_b1 step 5250 train nll 1.6411 kl 282.5 | val nll 1.6358 kl 281.8 | 1182s
+v4w_T1.05o_R4_b1 step 5500 train nll 1.6291 kl 278.1 | val nll 1.6362 kl 280.9 | 1479s
+v4w_T1.05o_R4_b1 step 5750 train nll 1.6148 kl 277.3 | val nll 1.6351 kl 281.0 | 1772s
+v4w_T1.05o_R4_b1 step 6000 train nll 1.6353 kl 283.9 | val nll 1.6363 kl 280.6 | 2072s
+v4w_T1.05o_R4_b1 step 6250 train nll 1.6672 kl 284.9 | val nll 1.6364 kl 281.2 | 2370s
+v4w_T1.05o_R4_b1 step 6500 train nll 1.6452 kl 279.5 | val nll 1.6353 kl 279.8 | 2668s
+v4w_T1.05o_R4_b1 step 6750 train nll 1.6334 kl 271.2 | val nll 1.6348 kl 278.7 | 2969s
+v4w_T1.05o_R4_b1 step 7000 train nll 1.6347 kl 281.6 | val nll 1.6364 kl 279.9 | 3273s
+v4w_T1.05o_R4_b1 step 7250 train nll 1.6237 kl 280.0 | val nll 1.6348 kl 280.3 | 3569s
+v4w_T1.05o_R4_b1 step 7500 train nll 1.6247 kl 275.4 | val nll 1.6350 kl 279.5 | 3863s
+v4w_T1.05o_R4_b1 step 7750 train nll 1.6440 kl 277.7 | val nll 1.6343 kl 279.4 | 4154s
+v4w_T1.05o_R4_b1 step 7999 train nll 1.6273 kl 274.6 | val nll 1.6349 kl 279.5 | 4441s
