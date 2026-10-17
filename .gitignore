@@ -8,3 +8,5 @@ results/alpha/*.pt
 results/logs/
 results/v2/*.ckpt
 results/v2/*.tmp
+data_kag/seeds/
+*.npy
