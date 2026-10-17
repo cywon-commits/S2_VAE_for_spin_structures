@@ -7,21 +7,23 @@ from mvae4 import MVAE4
 from mvae5 import MVAE5
 from mvae6 import MVAE6
 from mvae7 import MVAE7
+from mvae8 import MVAE8
+from mvae9 import MVAE9
 p = argparse.ArgumentParser()
 p.add_argument("--T", type=float); p.add_argument("--st", default="o"); p.add_argument("--R", type=int, default=1)
 p.add_argument("--beta", type=float, default=1.0); p.add_argument("--alpha", type=float, default=1e-5)
 p.add_argument("--steps", type=int, default=30000); p.add_argument("--bs", type=int, default=16)
 p.add_argument("--lr", type=float, default=3e-3); p.add_argument("--seed", type=int, default=0)
-p.add_argument("--warm", default=""); p.add_argument("--prune", action="store_true"); p.add_argument("--hier", action="store_true"); p.add_argument("--sub", action="store_true"); p.add_argument("--up", action="store_true"); p.add_argument("--sep", action="store_true"); p.add_argument("--up3", action="store_true"); p.add_argument("--act", type=int, default=-1); p.add_argument("--newdec", action="store_true"); p.add_argument("--tau0", type=float, default=0.5); p.add_argument("--kl_warm", type=float, default=0.3)
+p.add_argument("--warm", default=""); p.add_argument("--prune", action="store_true"); p.add_argument("--hier", action="store_true"); p.add_argument("--sub", action="store_true"); p.add_argument("--up", action="store_true"); p.add_argument("--sep", action="store_true"); p.add_argument("--up3", action="store_true"); p.add_argument("--abl", action="store_true"); p.add_argument("--sepup", action="store_true"); p.add_argument("--act", type=int, default=-1); p.add_argument("--newdec", action="store_true"); p.add_argument("--tau0", type=float, default=0.5); p.add_argument("--kl_warm", type=float, default=0.3)
 p.add_argument("--threads", type=int, default=1); p.add_argument("--data", default="../data"); p.add_argument("--out", default="../results/v2"); p.add_argument("--tag", default="")
 a = p.parse_args()
 torch.set_num_threads(a.threads); torch.manual_seed(a.seed); np.random.seed(a.seed)
 S = torch.tensor(np.load(f"{a.data}/ll_L12_T{a.T:.3f}_{a.st}.npy")); nv = max(len(S) // 10, 10)
 St = compute_stats(S, a.R); F = cell_features(S, a.R); ncell = (12 // a.R) ** 3
 tr, va = slice(0, len(S) - nv), slice(len(S) - nv, len(S))
-m = MVAE7(L=12, R=a.R, tau0=a.tau0) if a.up3 else MVAE5(L=12, R=a.R, tau0=a.tau0) if a.up else MVAE6(L=12, R=a.R) if a.sep else (MVAE3 if a.hier else MVAE4 if a.sub else MVAE2)(L=12, R=a.R)
+m = MVAE8(L=12, R=a.R, tau0=a.tau0) if a.abl else MVAE9(L=12, R=a.R, tau0=a.tau0) if a.sepup else MVAE7(L=12, R=a.R, tau0=a.tau0) if a.up3 else MVAE5(L=12, R=a.R, tau0=a.tau0) if a.up else MVAE6(L=12, R=a.R) if a.sep else (MVAE3 if a.hier else MVAE4 if a.sub else MVAE2)(L=12, R=a.R)
 if a.warm: m.load_state_dict(torch.load(a.warm, weights_only=False)["state"], strict=False)
-if a.sub or a.sep or a.up3:
+if a.sub or a.sep or a.up3 or a.abl or a.sepup:
     with torch.no_grad(): print('main active l=2 channel', m.set_active(F[:512]), flush=True)
     if a.act >= 0: m.act_idx.fill_(a.act); print('main channel forced to offset', a.act, flush=True)
 if a.prune:
@@ -32,7 +34,7 @@ if a.newdec:
     for mod in (m.d1, m.d2, m.dlin):
         for p_ in mod.parameters(): torch.nn.init.normal_(p_, std=1.0)
 sched = torch.optim.lr_scheduler.OneCycleLR(opt, max_lr=a.lr, total_steps=a.steps, pct_start=0.05, final_div_factor=1e3)
-name = f"{'v4w' if a.up3 else 'v4u' if a.up else 'v4s' if a.sep else 'v3h' if a.hier else 'v3s' if a.sub else 'v2'}_T{a.T:.2f}{a.st}_R{a.R}_b{a.beta:g}{a.tag}"; os.makedirs(a.out, exist_ok=True); ck = f"{a.out}/{name}.ckpt"
+name = f"{'v5a' if a.abl else 'v5b' if a.sepup else 'v4w' if a.up3 else 'v4u' if a.up else 'v4s' if a.sep else 'v3h' if a.hier else 'v3s' if a.sub else 'v2'}_T{a.T:.2f}{a.st}_R{a.R}_b{a.beta:g}{a.tag}"; os.makedirs(a.out, exist_ok=True); ck = f"{a.out}/{name}.ckpt"
 step0, log = 0, []
 if os.path.exists(ck):
     c = torch.load(ck, weights_only=False); m.load_state_dict(c["state"]); opt.load_state_dict(c["opt"]); sched.load_state_dict(c["sched"]); step0, log = c["step"], c["log"]

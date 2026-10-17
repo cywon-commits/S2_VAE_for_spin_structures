@@ -1,0 +1,9 @@
+v4u_T1.05o_R2_b1 power fractions l=1..6 [0.0, 0.994, 0.0, 0.0059, 0.0, 0.0001] | NLL 1.7703, odd-l zeroed -0.0000, l=3 zeroed -0.0000
+v4u_T1.05o_R3_b1 power fractions l=1..6 [0.0, 0.9911, 0.0, 0.0088, 0.0, 0.0001] | NLL 1.7066, odd-l zeroed -0.0000, l=3 zeroed -0.0000
+v4u_T1.05o_R4_b1 power fractions l=1..6 [0.0, 0.987, 0.0, 0.0129, 0.0, 0.0001] | NLL 1.6357, odd-l zeroed -0.0000, l=3 zeroed -0.0000
+v4u_T0.95o_R2_b1 power fractions l=1..6 [0.0, 0.9912, 0.0, 0.0085, 0.0, 0.0003] | NLL 1.4413, odd-l zeroed -0.0000, l=3 zeroed +0.0000
+v4u_T0.95o_R3_b1 power fractions l=1..6 [0.0, 0.9863, 0.0, 0.0133, 0.0, 0.0004] | NLL 1.3836, odd-l zeroed -0.0000, l=3 zeroed -0.0000
+v4u_T0.95o_R4_b1 power fractions l=1..6 [0.0, 0.9829, 0.0, 0.0168, 0.0, 0.0003] | NLL 1.3258, odd-l zeroed -0.0000, l=3 zeroed +0.0000
+v4w_T1.05o_R2_b1 power fractions l=1..6 [0.0, 0.9949, 0.0, 0.0051, 0.0, 0.0] | NLL 1.7688, odd-l zeroed -0.0000, l=3 zeroed -0.0000
+v4w_T1.05o_R3_b1 power fractions l=1..6 [0.0, 0.9964, 0.0, 0.0036, 0.0, 0.0] | NLL 1.7032, odd-l zeroed +0.0000, l=3 zeroed -0.0000
+v4w_T1.05o_R4_b1_act31 power fractions l=1..6 [0.0, 0.9954, 0.0, 0.0046, 0.0, 0.0] | NLL 1.6284, odd-l zeroed -0.0000, l=3 zeroed -0.0000
