@@ -22,7 +22,7 @@ def harmonic_ratios(d):
     return dict(minus_ln_m3=-np.log(m3), ln_m6_over_ln_m3=np.log(m6) / np.log(m3), ln_m9_over_ln_m3=np.log(m9) / np.log(m3), eps2=d["eps2"].mean().item(), c1=d["c1"].mean().item(), c2=d["c2"].mean().item())
 @torch.no_grad()
 def evaluate_k(path, nsamp=4):
-    ck = torch.load(path, weights_only=False); a = ck["args"]; R = a["R"]; m = KVAE(R=R, order=131); m.load_state_dict(ck["state"], strict=False); m.eval(); nsub = (12 // R) ** 2
+    ck = torch.load(path, weights_only=False); a = ck["args"]; R = a["R"]; m = KVAE(R=R, order=131); m.load_state_dict({k: v for k, v in ck["state"].items() if not k.startswith("logz.")}, strict=False); m.eval(); nsub = (12 // R) ** 2
     S = torch.tensor(load_T(a["T"], VAL_SEEDS)); F = kag_features(S, R); St = kag_stats(S, R); nseed = len(VAL_SEEDS); per = len(S) // nseed
     mu, lv = m.encode(F); kl = m.kl(mu, lv); torch.manual_seed(0); nll = torch.zeros(len(S)); mom = []; trunc = {L: torch.zeros(len(S)) for L in (1, 2, 3, 4, 6, 8)}
     for _ in range(nsamp):

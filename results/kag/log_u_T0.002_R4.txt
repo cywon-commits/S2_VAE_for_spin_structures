@@ -1,0 +1,1 @@
+kagu_T0.0020_R4 step 0 train nll 0.5085 kl 1020.2 | val nll 0.3753 kl 988.5 | 6s

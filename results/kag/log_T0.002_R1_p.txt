@@ -1,0 +1,26 @@
+pruned: active components 17
+kag_T0.0020_R1_p step 0 train nll 1.1608 kl 35.7 | val nll 1.2733 kl 34.8 | 0s
+kag_T0.0020_R1_p step 250 train nll 1.2745 kl 36.1 | val nll 1.2570 kl 35.9 | 19s
+kag_T0.0020_R1_p step 500 train nll 1.1353 kl 36.7 | val nll 1.2563 kl 35.5 | 43s
+kag_T0.0020_R1_p step 750 train nll 0.9790 kl 37.9 | val nll 1.2581 kl 35.4 | 60s
+kag_T0.0020_R1_p step 1000 train nll 1.1856 kl 36.1 | val nll 1.2566 kl 35.6 | 78s
+kag_T0.0020_R1_p step 1250 train nll 0.9209 kl 37.6 | val nll 1.2560 kl 35.3 | 96s
+kag_T0.0020_R1_p step 1500 train nll 0.9756 kl 37.9 | val nll 1.2564 kl 35.4 | 116s
+kag_T0.0020_R1_p step 1750 train nll 1.0823 kl 37.5 | val nll 1.2543 kl 35.9 | 137s
+kag_T0.0020_R1_p step 2000 train nll 1.1226 kl 36.9 | val nll 1.2548 kl 35.8 | 158s
+kag_T0.0020_R1_p step 2250 train nll 1.1137 kl 36.5 | val nll 1.2558 kl 35.2 | 178s
+kag_T0.0020_R1_p step 2500 train nll 1.1067 kl 36.3 | val nll 1.2560 kl 35.3 | 198s
+kag_T0.0020_R1_p step 2750 train nll 1.1074 kl 36.7 | val nll 1.2563 kl 35.4 | 219s
+kag_T0.0020_R1_p step 3000 train nll 1.0984 kl 36.8 | val nll 1.2565 kl 35.3 | 239s
+kag_T0.0020_R1_p step 3250 train nll 0.9814 kl 37.4 | val nll 1.2549 kl 35.4 | 256s
+kag_T0.0020_R1_p step 3500 train nll 1.0925 kl 37.3 | val nll 1.2554 kl 35.7 | 275s
+kag_T0.0020_R1_p step 3750 train nll 1.0522 kl 36.9 | val nll 1.2546 kl 35.4 | 293s
+kag_T0.0020_R1_p step 4000 train nll 1.2461 kl 36.0 | val nll 1.2553 kl 35.5 | 313s
+kag_T0.0020_R1_p step 4250 train nll 1.1508 kl 36.3 | val nll 1.2544 kl 35.3 | 331s
+kag_T0.0020_R1_p step 4500 train nll 1.0833 kl 37.1 | val nll 1.2542 kl 35.5 | 350s
+kag_T0.0020_R1_p step 4750 train nll 1.0874 kl 36.8 | val nll 1.2555 kl 35.3 | 366s
+kag_T0.0020_R1_p step 5000 train nll 1.0844 kl 37.1 | val nll 1.2549 kl 35.3 | 386s
+kag_T0.0020_R1_p step 5250 train nll 0.9607 kl 37.3 | val nll 1.2555 kl 35.3 | 405s
+kag_T0.0020_R1_p step 5500 train nll 1.1960 kl 36.0 | val nll 1.2548 kl 35.4 | 421s
+kag_T0.0020_R1_p step 5750 train nll 1.1074 kl 36.6 | val nll 1.2541 kl 35.3 | 440s
+kag_T0.0020_R1_p step 5999 train nll 1.2174 kl 35.6 | val nll 1.2549 kl 35.4 | 458s
