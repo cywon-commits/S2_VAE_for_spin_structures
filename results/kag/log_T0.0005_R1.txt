@@ -19,3 +19,5 @@ kag_T0.0005_R1 step 4250 train nll -0.0500 kl 78.9 | val nll 0.1102 kl 76.7 | 33
 kag_T0.0005_R1 step 4500 train nll -0.1477 kl 80.5 | val nll 0.1122 kl 74.3 | 356s
 kag_T0.0005_R1 step 4750 train nll 0.1253 kl 72.3 | val nll 0.1129 kl 71.9 | 377s
 kag_T0.0005_R1 step 5000 train nll -0.0327 kl 72.7 | val nll 0.1157 kl 69.7 | 397s
+kag_T0.0005_R1 step 5250 train nll 0.2081 kl 67.0 | val nll 0.1152 kl 67.4 | 422s
+kag_T0.0005_R1 step 5500 train nll -0.1392 kl 73.5 | val nll 0.1056 kl 70.1 | 444s

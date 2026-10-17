@@ -10,3 +10,4 @@ results/v2/*.ckpt
 results/v2/*.tmp
 data_kag/seeds/
 *.npy
+results/kag/*.ckpt
