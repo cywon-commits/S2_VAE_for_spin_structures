@@ -1,0 +1,3 @@
+main active l=2 channel 3
+main channel forced to offset 31
+v5a_T1.05o_R2_b1 step 0 train nll 1.8827 kl 263.1 | val nll 1.8959 kl 245.6 | 1s
