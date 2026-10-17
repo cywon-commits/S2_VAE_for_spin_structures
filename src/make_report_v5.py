@@ -33,6 +33,7 @@ for R in (2, 3, 4):
     r = am[R]; L.append(f"| {R} | {r['rec_encoder']:.1f} -> {r['rec_direct']:.1f} ({r['rec_change']:+.1f}) | {r['kl_encoder']:.1f} -> {r['kl_direct']:.1f} ({r['kl_change']:+.1f}) | {r['elbo_gain']:.1f} | {100*r['kl_change']/r['kl_encoder']:.0f}% |")
 open(f"{R_}/v5_table_12.md", "w").write("\n".join(L) + "\n")
 l3 = json.load(open(f"{R_}/v5/l3_check.json"))
-L = ["| model | T | R | power fraction l=3 | NLL change when l=3 is zeroed | when all odd l zeroed |", "|---|---|---|---|---|---|"]
-for r in l3: L.append(f"| {r['run'].split('_')[0]} | {r['T']} | {r['R']} | {100*r['power_fraction_l1_to_l6'][2]:.2f}% | {r['dNLL_l3']:+.1e} | {r['dNLL_odd']:+.1e} |")
+L = ["| model | T | R | power fraction l=3 | odd-l (1,3,5) total | power fraction l=4 | NLL change when l=3 is zeroed | when all odd l zeroed |", "|---|---|---|---|---|---|---|---|"]
+for r in l3:
+    f = r["power_fraction_l1_to_l6"]; L.append(f"| {r['run'].split('_')[0]} | {r['T']} | {r['R']} | {f[2]:.1e} | {f[0]+f[2]+f[4]:.1e} | {100*f[3]:.2f}% | {r['dNLL_l3']:+.1e} | {r['dNLL_odd']:+.1e} |")
 open(f"{R_}/v5_table_15.md", "w").write("\n".join(L) + "\n"); print("ok")
