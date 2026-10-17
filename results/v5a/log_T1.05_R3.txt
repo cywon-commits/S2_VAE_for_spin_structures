@@ -1,3 +1,6 @@
 main active l=2 channel 3
 main channel forced to offset 31
 v5a_T1.05o_R3_b1 step 0 train nll 1.8026 kl 1672.3 | val nll 1.8981 kl 1698.6 | 4s
+v5a_T1.05o_R3_b1 step 250 train nll 1.7101 kl 861.9 | val nll 1.7068 kl 855.6 | 200s
+v5a_T1.05o_R3_b1 step 500 train nll 1.7171 kl 190.7 | val nll 1.7178 kl 195.2 | 389s
+v5a_T1.05o_R3_b1 step 750 train nll 1.7267 kl 155.3 | val nll 1.7163 kl 159.9 | 575s
