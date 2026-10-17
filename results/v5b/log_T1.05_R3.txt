@@ -4,3 +4,15 @@ v5b_T1.05o_R3_b1 step 0 train nll 2.5977 kl 1667.8 | val nll 2.4562 kl 1587.7 | 
 v5b_T1.05o_R3_b1 step 250 train nll 1.6741 kl 357.4 | val nll 1.6901 kl 352.9 | 194s
 v5b_T1.05o_R3_b1 step 500 train nll 1.7090 kl 194.9 | val nll 1.6999 kl 194.6 | 378s
 v5b_T1.05o_R3_b1 step 750 train nll 1.6973 kl 163.0 | val nll 1.7022 kl 166.9 | 570s
+v5b_T1.05o_R3_b1 step 1000 train nll 1.6921 kl 154.3 | val nll 1.7036 kl 157.0 | 720s
+v5b_T1.05o_R3_b1 step 1250 train nll 1.6909 kl 145.5 | val nll 1.7014 kl 148.8 | 867s
+v5b_T1.05o_R3_b1 step 1500 train nll 1.7231 kl 143.2 | val nll 1.7021 kl 143.0 | 1015s
+v5b_T1.05o_R3_b1 step 1750 train nll 1.7140 kl 139.6 | val nll 1.7029 kl 137.3 | 1164s
+v5b_T1.05o_R3_b1 step 2000 train nll 1.7307 kl 131.6 | val nll 1.7034 kl 132.8 | 1312s
+v5b_T1.05o_R3_b1 step 2250 train nll 1.7056 kl 128.4 | val nll 1.7033 kl 130.7 | 1458s
+v5b_T1.05o_R3_b1 step 2500 train nll 1.7079 kl 126.4 | val nll 1.7044 kl 126.9 | 1605s
+v5b_T1.05o_R3_b1 step 2750 train nll 1.6962 kl 123.5 | val nll 1.7045 kl 124.7 | 1752s
+v5b_T1.05o_R3_b1 step 3000 train nll 1.7241 kl 120.0 | val nll 1.7054 kl 121.4 | 1899s
+v5b_T1.05o_R3_b1 step 3250 train nll 1.6902 kl 118.0 | val nll 1.7047 kl 119.9 | 2048s
+v5b_T1.05o_R3_b1 step 3500 train nll 1.6966 kl 118.0 | val nll 1.7041 kl 118.6 | 2200s
+v5b_T1.05o_R3_b1 step 3750 train nll 1.7035 kl 115.3 | val nll 1.7055 kl 116.0 | 2348s
