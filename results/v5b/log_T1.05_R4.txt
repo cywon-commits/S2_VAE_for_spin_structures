@@ -8,3 +8,4 @@ v5b_T1.05o_R4_b1 step 1000 train nll 1.6116 kl 277.2 | val nll 1.6375 kl 287.2 |
 v5b_T1.05o_R4_b1 step 1250 train nll 1.6347 kl 263.3 | val nll 1.6356 kl 266.0 | 1461s
 v5b_T1.05o_R4_b1 step 1500 train nll 1.6271 kl 250.4 | val nll 1.6350 kl 252.8 | 1757s
 v5b_T1.05o_R4_b1 step 1750 train nll 1.6100 kl 240.7 | val nll 1.6343 kl 243.8 | 2050s
+v5b_T1.05o_R4_b1 step 2000 train nll 1.6125 kl 231.7 | val nll 1.6361 kl 234.0 | 2341s

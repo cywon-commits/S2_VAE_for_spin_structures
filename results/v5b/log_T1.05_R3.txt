@@ -32,3 +32,4 @@ v5b_T1.05o_R3_b1 step 7000 train nll 1.6900 kl 105.7 | val nll 1.7056 kl 109.3 |
 v5b_T1.05o_R3_b1 step 7250 train nll 1.6948 kl 108.5 | val nll 1.7052 kl 109.4 | 4408s
 v5b_T1.05o_R3_b1 step 7500 train nll 1.7022 kl 108.8 | val nll 1.7052 kl 109.2 | 4555s
 v5b_T1.05o_R3_b1 step 7750 train nll 1.6794 kl 107.8 | val nll 1.7055 kl 109.0 | 4699s
+v5b_T1.05o_R3_b1 step 7999 train nll 1.6888 kl 105.5 | val nll 1.7051 kl 109.0 | 4843s
