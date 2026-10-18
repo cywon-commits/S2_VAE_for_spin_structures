@@ -18,7 +18,7 @@ name = f"kag6_T{a.T:.4f}_R{R}{a.tag}"; os.makedirs(a.out, exist_ok=True); ck = f
 if os.path.exists(ck):
     c = torch.load(ck, weights_only=False); m.load_state_dict(c["state"]); opt.load_state_dict(c["opt"]); sched.load_state_dict(c["sched"]); step0, log = c["step"], c["log"]; print("resumed at", step0, flush=True)
 def batch(idx):                                   # idx in [0, 2*ntr): second half = time-reversed copies
-    tr = idx >= ntr; i = idx % ntr; Y = torch.cat([site_Y(Str[i[~tr]], R), site_Y(Str[i[tr]], R, -1.0)]); F = torch.cat([Ftr[idx[~tr]], Ftr[idx[tr]]]); return F, Y
+    tr = idx >= ntr; i = idx % ntr; Y = torch.cat([site_Y(Str[i[g]], R, sg) for g, sg in ((~tr, 1.0), (tr, -1.0)) if g.any()]); F = torch.cat([Ftr[idx[~tr]], Ftr[idx[tr]]]); return F, Y
 def val():
     m.eval(); out = []
     with torch.no_grad():
