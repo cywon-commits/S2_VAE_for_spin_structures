@@ -10,7 +10,7 @@ def load(path):
     ck = torch.load(path, weights_only=False); a = ck["args"]; cls = KVAE5 if a.get("up") else KVAE
     m = cls(R=a["R"], order=131); m.load_state_dict({k: v for k, v in ck["state"].items() if not k.startswith("logz.")}, strict=False); m.eval(); return m, a
 @torch.no_grad()
-def per_config(path, nsamp=4):
+def per_config(path, nsamp=2):
     m, a = load(path); R = a["R"]; nsub = (12 // R) ** 2; N = 432
     S = torch.tensor(load_T(a["T"], VAL_SEEDS)); F = kag_features(S, R); St = kag_stats(S, R)
     if a.get("up"):
