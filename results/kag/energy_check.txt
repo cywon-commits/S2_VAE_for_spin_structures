@@ -1,0 +1,4 @@
+T=0.0005: 40 seeds, E/site = -0.99954 +- 0.00000 (s.e.m.), expected -0.99954, seed-to-seed std 0.00001
+T=0.001: 40 seeds, E/site = -0.99907 +- 0.00000 (s.e.m.), expected -0.99908, seed-to-seed std 0.00001
+T=0.002: 40 seeds, E/site = -0.99814 +- 0.00000 (s.e.m.), expected -0.99817, seed-to-seed std 0.00002
+T=0.004: 40 seeds, E/site = -0.99623 +- 0.00001 (s.e.m.), expected -0.99633, seed-to-seed std 0.00004
