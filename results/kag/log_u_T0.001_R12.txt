@@ -9,3 +9,4 @@ kagu_T0.0010_R12 step 1750 train nll -1.4404 kl 1004.8 | val nll -1.4022 kl 1002
 kagu_T0.0010_R12 step 2000 train nll -1.4487 kl 976.6 | val nll -1.5013 kl 1026.1 | 2321s
 kagu_T0.0010_R12 step 2250 train nll -1.5142 kl 1006.2 | val nll -1.5203 kl 1024.0 | 2596s
 kagu_T0.0010_R12 step 2500 train nll -1.5748 kl 1081.4 | val nll -1.6009 kl 1050.0 | 2877s
+kagu_T0.0010_R12 step 2750 train nll -1.5654 kl 913.9 | val nll -1.5211 kl 1009.8 | 3157s
