@@ -29,3 +29,5 @@ kagu_T0.0010_R4 step 6750 train nll 0.0263 kl 226.8 | val nll 0.0323 kl 214.1 | 
 kagu_T0.0010_R4 step 7000 train nll -0.0048 kl 214.3 | val nll 0.0362 kl 213.6 | 2678s
 kagu_T0.0010_R4 step 7250 train nll 0.0363 kl 217.1 | val nll 0.0351 kl 214.4 | 2775s
 kagu_T0.0010_R4 step 7500 train nll -0.0046 kl 209.2 | val nll 0.0333 kl 214.2 | 2871s
+kagu_T0.0010_R4 step 7750 train nll -0.1234 kl 212.8 | val nll 0.0340 kl 214.1 | 2967s
+kagu_T0.0010_R4 step 7999 train nll 0.0115 kl 217.5 | val nll 0.0346 kl 214.1 | 3058s
