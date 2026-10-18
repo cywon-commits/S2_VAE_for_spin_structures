@@ -1,2 +1,5 @@
 []
 kag6_T0.0020_R4 step 0 train nll 2.5309 kl 204.3 | val nll 2.5309 kl 202.0 | 12s
+kag6_T0.0020_R4 step 250 train nll 2.5264 kl 45.5 | val nll 2.5271 kl 47.5 | 145s
+kag6_T0.0020_R4 step 500 train nll 2.5192 kl 28.4 | val nll 2.5198 kl 29.7 | 281s
+kag6_T0.0020_R4 step 750 train nll 0.5839 kl 189.2 | val nll 0.6667 kl 189.3 | 414s

@@ -1,0 +1,3 @@
+/home/user/S2_VAE_for_spin_structures/src/kag/ring_oracle.py:22: RuntimeWarning: invalid value encountered in divide
+  mask = col != a; ua = U[a]; E = U[col] - np.outer(U[col] @ ua, ua); E /= np.linalg.norm(E, axis=1, keepdims=True); W = np.cross(ua, E)
+0.0005 g_ring mean 0.3071122273739355 n_def mean 0.04875
