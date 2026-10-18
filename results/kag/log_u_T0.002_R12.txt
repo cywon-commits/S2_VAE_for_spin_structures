@@ -22,3 +22,4 @@ kagu_T0.0020_R12 step 5000 train nll -1.4274 kl 1067.3 | val nll -1.4883 kl 1081
 kagu_T0.0020_R12 step 5250 train nll -1.4807 kl 1034.8 | val nll -1.4931 kl 1082.6 | 6047s
 kagu_T0.0020_R12 step 5500 train nll -1.4888 kl 1017.3 | val nll -1.4941 kl 1084.5 | 6322s
 kagu_T0.0020_R12 step 5750 train nll -1.4414 kl 1051.4 | val nll -1.4948 kl 1083.5 | 6600s
+kagu_T0.0020_R12 step 5999 train nll -1.5710 kl 943.3 | val nll -1.4957 kl 1082.8 | 6877s

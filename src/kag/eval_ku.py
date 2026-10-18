@@ -17,9 +17,10 @@ def per_config(path, nsamp=4):
         mu_g, lv_g = m.encode(F.mean(1, keepdim=True)); mu_c, lv_c = m.encode(F); kl_g, kl_c = m.kl_terms(mu_g, lv_g, mu_c, lv_c)
     else:
         mu_c, lv_c = m.encode(F); kl_g = m.kl(mu_c, lv_c); kl_c = torch.zeros_like(kl_g)
-    torch.manual_seed(0); nll = torch.zeros(len(S)); mom = []
+    torch.manual_seed(0); nll = torch.zeros(len(S)); mom = []; CH = 20
     for _ in range(nsamp):
-        lam = m.decode(m.sample(mu_c, lv_c)); nll += m.nll_cfg(lam, St, nsub) / nsamp; mom.append(decoder_moments(lam))
+        for i in range(0, len(S), CH):
+            sl = slice(i, i + CH); lam = m.decode(m.sample(mu_c[sl], lv_c[sl])); nll[sl] += m.nll_cfg(lam, St[sl], nsub) / nsamp; mom.append(decoder_moments(lam))
     cat = {k: torch.cat([d[k].reshape(-1) for d in mom]) for k in mom[0]}
     return dict(nll_cfg=nll, kl_g=kl_g, kl_c=kl_c, harm=harmonic_ratios(cat), tau=(m.log_tau.exp().tolist() if a.get("up") else None), args=a)
 def run(T, R, tag_base="_p", tag_run=""):
