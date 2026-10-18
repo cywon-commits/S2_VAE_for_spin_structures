@@ -1,0 +1,2 @@
+[]
+kag6_T0.0020_R4 step 0 train nll 2.5309 kl 204.3 | val nll 2.5309 kl 202.0 | 12s
