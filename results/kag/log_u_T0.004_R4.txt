@@ -1,0 +1,5 @@
+kagu_T0.0040_R4 step 0 train nll 0.9331 kl 1426.2 | val nll 0.9100 kl 1406.2 | 6s
+kagu_T0.0040_R4 step 250 train nll 1.1772 kl 452.4 | val nll 1.0113 kl 435.9 | 106s
+kagu_T0.0040_R4 step 500 train nll 1.1712 kl 186.1 | val nll 1.0992 kl 186.8 | 204s
+kagu_T0.0040_R4 step 750 train nll 1.0933 kl 174.5 | val nll 1.0739 kl 171.3 | 300s
+kagu_T0.0040_R4 step 1000 train nll 1.1392 kl 165.3 | val nll 1.0528 kl 165.8 | 397s

@@ -1,0 +1,2 @@
+kagu_T0.0040_R12 step 0 train nll 65.9464 kl 351248.3 | val nll 69.5824 kl 354455.9 | 54s
+kagu_T0.0040_R12 step 250 train nll 2.0312 kl 1794.3 | val nll 2.0092 kl 1871.9 | 350s
