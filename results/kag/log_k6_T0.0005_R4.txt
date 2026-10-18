@@ -4,3 +4,4 @@ kag6_T0.0005_R4 step 250 train nll 2.5226 kl 74.2 | val nll 2.5226 kl 73.7 | 138
 kag6_T0.0005_R4 step 500 train nll -0.1150 kl 243.0 | val nll -0.0121 kl 236.1 | 271s
 kag6_T0.0005_R4 step 750 train nll -0.2587 kl 221.1 | val nll -0.2340 kl 217.2 | 403s
 kag6_T0.0005_R4 step 1000 train nll -0.3743 kl 216.8 | val nll -0.2983 kl 218.6 | 536s
+kag6_T0.0005_R4 step 1250 train nll -0.4818 kl 222.3 | val nll -0.3530 kl 225.4 | 674s
