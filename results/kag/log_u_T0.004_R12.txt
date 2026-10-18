@@ -11,3 +11,15 @@ kagu_T0.0040_R12 step 2250 train nll -0.8591 kl 906.7 | val nll -0.8853 kl 922.6
 kagu_T0.0040_R12 step 2500 train nll -0.9983 kl 996.3 | val nll -0.9767 kl 946.3 | 2867s
 kagu_T0.0040_R12 step 2750 train nll -1.0231 kl 965.6 | val nll -1.0908 kl 981.8 | 3143s
 kagu_T0.0040_R12 step 3000 train nll -1.1683 kl 997.8 | val nll -1.1565 kl 999.2 | 3417s
+kagu_T0.0040_R12 step 3250 train nll -1.2000 kl 1020.1 | val nll -1.1938 kl 1005.4 | 3695s
+kagu_T0.0040_R12 step 3500 train nll -1.2512 kl 1018.4 | val nll -1.2359 kl 1015.4 | 3963s
+kagu_T0.0040_R12 step 3750 train nll -1.2665 kl 988.5 | val nll -1.2658 kl 1023.0 | 4232s
+kagu_T0.0040_R12 step 4000 train nll -1.2774 kl 1033.5 | val nll -1.2848 kl 1025.1 | 4501s
+kagu_T0.0040_R12 step 4250 train nll -1.2821 kl 1030.5 | val nll -1.3057 kl 1030.0 | 4779s
+kagu_T0.0040_R12 step 4500 train nll -1.3408 kl 1105.6 | val nll -1.3204 kl 1033.6 | 5061s
+kagu_T0.0040_R12 step 4750 train nll -1.3757 kl 1057.0 | val nll -1.3465 kl 1042.2 | 5350s
+kagu_T0.0040_R12 step 5000 train nll -1.3271 kl 1073.9 | val nll -1.3451 kl 1041.6 | 5642s
+kagu_T0.0040_R12 step 5250 train nll -1.3657 kl 1065.7 | val nll -1.3584 kl 1044.4 | 5926s
+kagu_T0.0040_R12 step 5500 train nll -1.3329 kl 1103.3 | val nll -1.3513 kl 1042.2 | 6210s
+kagu_T0.0040_R12 step 5750 train nll -1.3239 kl 1029.3 | val nll -1.3619 kl 1045.0 | 6486s
+kagu_T0.0040_R12 step 5999 train nll -1.3343 kl 1018.2 | val nll -1.3608 kl 1044.2 | 6765s
