@@ -1,0 +1,6 @@
+T=0.0005: configs=1000  NLL/site A=-0.9334 B=-1.3738 C=-1.1978
+   gain A->B (local frame, R=4 cells) = 0.4403/site = 190 nats/config
+   gain B->C (loop rotations)         = -0.1759/site = -76 nats/config
+T=0.002: configs=1000  NLL/site A=0.1527 B=-0.2905 C=-0.1211
+   gain A->B (local frame, R=4 cells) = 0.4432/site = 191 nats/config
+   gain B->C (loop rotations)         = -0.1694/site = -73 nats/config

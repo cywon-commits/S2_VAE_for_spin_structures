@@ -1,0 +1,6 @@
+T=0.0005: loops/config 47.5 (hexagons 33.6)
+   B->C all loops : 0.2051/site = 89 nats/config  (overfit ~0.5 nat/loop = 24)
+   B->C hexagons  : 0.1634/site = 71 nats/config  (overfit ~17)
+T=0.002: loops/config 42.9 (hexagons 32.2)
+   B->C all loops : 0.1758/site = 76 nats/config  (overfit ~0.5 nat/loop = 21)
+   B->C hexagons  : 0.1462/site = 63 nats/config  (overfit ~16)
