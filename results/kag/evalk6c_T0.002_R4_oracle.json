@@ -1,0 +1,21 @@
+{
+ "T": 0.002,
+ "R": 4,
+ "color": "oracle",
+ "nll": 0.4100034236907959,
+ "kl": 179.2548828125,
+ "net_gain_vs_R1": 221.1837921142578,
+ "net_gain_vs_R1_se": 8.30665089195703,
+ "nll_gain_vs_R1": 0.8450907468795776,
+ "nll_gain_vs_R1_se": 0.025118109793067726,
+ "net_gain_vs_colourfree": 7.012582302093506,
+ "net_gain_vs_colourfree_se": 0.5672704499105569,
+ "nll_gain_vs_colourfree": 0.01699155569076538,
+ "nll_gain_vs_colourfree_se": 0.0008553673270783084,
+ "decoded_mean_vector_len": 0.05401749595103485,
+ "decoded_theta2": 2.902627818769211,
+ "data_class_mean_vector_len": 0.9060781690490618,
+ "data_class_theta2": 0.20092982192288938,
+ "colourfree_nll": 0.42699500918388367,
+ "colourfree_kl": 178.92706298828125
+}
