@@ -41,3 +41,10 @@ kag6_T0.0020_R1 step 6000 train nll 1.1095 kl 36.3 | val nll 1.2668 kl 34.8 | 8s
 kag6_T0.0020_R1 step 6250 train nll 1.1375 kl 35.5 | val nll 1.2666 kl 34.7 | 86s
 kag6_T0.0020_R1 step 6500 train nll 1.1010 kl 36.6 | val nll 1.2660 kl 34.9 | 163s
 kag6_T0.0020_R1 step 6750 train nll 1.0526 kl 36.4 | val nll 1.2660 kl 34.4 | 237s
+[]
+resumed at 6750
+kag6_T0.0020_R1 step 6750 train nll 1.1098 kl 35.9 | val nll 1.2673 kl 34.4 | 8s
+kag6_T0.0020_R1 step 7000 train nll 1.1374 kl 35.4 | val nll 1.2667 kl 34.6 | 79s
+kag6_T0.0020_R1 step 7250 train nll 1.1008 kl 36.4 | val nll 1.2663 kl 34.7 | 150s
+kag6_T0.0020_R1 step 7500 train nll 1.0518 kl 36.7 | val nll 1.2653 kl 34.6 | 220s
+kag6_T0.0020_R1 step 7750 train nll 1.1777 kl 35.3 | val nll 1.2658 kl 34.6 | 291s
