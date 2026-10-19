@@ -1,0 +1,3 @@
+[]
+kag6u_T0.0005_R4_oracle step 0 train nll 1.0257 kl 234.4 | val nll 0.3648 kl 221.6 | 21s
+kag6u_T0.0005_R4_oracle step 250 train nll -0.3427 kl 93.2 | val nll -0.2633 kl 97.8 | 223s

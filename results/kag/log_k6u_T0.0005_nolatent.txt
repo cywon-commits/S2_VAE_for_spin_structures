@@ -1,0 +1,2 @@
+kag6u_T0.0005_R4_nolatent step 0 train nll 0.9887 kl 0.0 | val nll 0.3334 kl 0.0 | 19s
+kag6u_T0.0005_R4_nolatent step 250 train nll -0.1817 kl 0.0 | val nll -0.0420 kl 0.0 | 218s
