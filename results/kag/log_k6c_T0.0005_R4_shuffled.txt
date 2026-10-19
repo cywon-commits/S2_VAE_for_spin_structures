@@ -1,2 +1,26 @@
 _IncompatibleKeys(missing_keys=['Wc', 'logz.Yq', 'logz.logw'], unexpected_keys=[])
 kag6c_T0.0005_R4_shuffled step 0 train nll -0.5469 kl 244.8 | val nll -0.5579 kl 235.0 | 13s
+kag6c_T0.0005_R4_shuffled step 250 train nll -0.6048 kl 240.5 | val nll -0.5600 kl 234.7 | 149s
+kag6c_T0.0005_R4_shuffled step 500 train nll -0.6514 kl 230.1 | val nll -0.5607 kl 234.1 | 285s
+kag6c_T0.0005_R4_shuffled step 750 train nll -0.6204 kl 233.9 | val nll -0.5607 kl 232.9 | 433s
+kag6c_T0.0005_R4_shuffled step 1000 train nll -0.6982 kl 227.3 | val nll -0.5641 kl 232.5 | 577s
+kag6c_T0.0005_R4_shuffled step 1250 train nll -0.7501 kl 230.4 | val nll -0.5710 kl 234.5 | 717s
+kag6c_T0.0005_R4_shuffled step 1500 train nll -0.6649 kl 235.8 | val nll -0.5760 kl 236.2 | 859s
+kag6c_T0.0005_R4_shuffled step 1750 train nll -0.7595 kl 228.7 | val nll -0.5717 kl 233.3 | 999s
+kag6c_T0.0005_R4_shuffled step 2000 train nll -0.4460 kl 237.3 | val nll -0.5655 kl 229.5 | 1141s
+kag6c_T0.0005_R4_shuffled step 2250 train nll -0.4805 kl 229.4 | val nll -0.5595 kl 226.7 | 1282s
+kag6c_T0.0005_R4_shuffled step 2500 train nll -0.5560 kl 227.4 | val nll -0.5747 kl 230.6 | 1416s
+kag6c_T0.0005_R4_shuffled step 2750 train nll -0.7253 kl 228.0 | val nll -0.5684 kl 227.7 | 1547s
+kag6c_T0.0005_R4_shuffled step 3000 train nll -0.6904 kl 232.3 | val nll -0.5767 kl 229.6 | 1692s
+kag6c_T0.0005_R4_shuffled step 3250 train nll -0.6323 kl 237.0 | val nll -0.5797 kl 232.4 | 1833s
+kag6c_T0.0005_R4_shuffled step 3500 train nll -0.6922 kl 234.0 | val nll -0.5755 kl 229.7 | 1969s
+kag6c_T0.0005_R4_shuffled step 3750 train nll -0.5829 kl 232.7 | val nll -0.5747 kl 229.6 | 2109s
+kag6c_T0.0005_R4_shuffled step 4000 train nll -0.8035 kl 221.8 | val nll -0.5777 kl 229.7 | 2248s
+kag6c_T0.0005_R4_shuffled step 4250 train nll -0.6890 kl 228.3 | val nll -0.5799 kl 230.0 | 2393s
+kag6c_T0.0005_R4_shuffled step 4500 train nll -0.7731 kl 218.9 | val nll -0.5736 kl 227.2 | 2536s
+kag6c_T0.0005_R4_shuffled step 4750 train nll -0.6774 kl 220.8 | val nll -0.5761 kl 228.6 | 2677s
+kag6c_T0.0005_R4_shuffled step 5000 train nll -0.6164 kl 221.8 | val nll -0.5738 kl 227.5 | 2820s
+kag6c_T0.0005_R4_shuffled step 5250 train nll -0.7162 kl 226.8 | val nll -0.5751 kl 227.4 | 2964s
+kag6c_T0.0005_R4_shuffled step 5500 train nll -0.7328 kl 226.5 | val nll -0.5762 kl 228.0 | 3108s
+kag6c_T0.0005_R4_shuffled step 5750 train nll -0.7138 kl 224.4 | val nll -0.5768 kl 228.1 | 3256s
+kag6c_T0.0005_R4_shuffled step 5999 train nll -0.6332 kl 227.4 | val nll -0.5770 kl 228.1 | 3397s

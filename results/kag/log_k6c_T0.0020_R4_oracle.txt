@@ -1,2 +1,26 @@
 _IncompatibleKeys(missing_keys=['Wc', 'logz.Yq', 'logz.logw'], unexpected_keys=[])
 kag6c_T0.0020_R4_oracle step 0 train nll 0.2822 kl 179.8 | val nll 0.4283 kl 179.0 | 12s
+kag6c_T0.0020_R4_oracle step 250 train nll 0.2161 kl 177.5 | val nll 0.4236 kl 179.9 | 150s
+kag6c_T0.0020_R4_oracle step 500 train nll 0.2650 kl 176.7 | val nll 0.4215 kl 180.0 | 292s
+kag6c_T0.0020_R4_oracle step 750 train nll 0.3084 kl 177.4 | val nll 0.4193 kl 180.0 | 435s
+kag6c_T0.0020_R4_oracle step 1000 train nll 0.3414 kl 178.3 | val nll 0.4192 kl 179.6 | 585s
+kag6c_T0.0020_R4_oracle step 1250 train nll 0.3444 kl 181.6 | val nll 0.4208 kl 177.8 | 727s
+kag6c_T0.0020_R4_oracle step 1500 train nll 0.4474 kl 178.8 | val nll 0.4205 kl 177.1 | 869s
+kag6c_T0.0020_R4_oracle step 1750 train nll 0.3117 kl 176.1 | val nll 0.4190 kl 178.6 | 1000s
+kag6c_T0.0020_R4_oracle step 2000 train nll 0.3205 kl 176.8 | val nll 0.4174 kl 178.3 | 1136s
+kag6c_T0.0020_R4_oracle step 2250 train nll 0.2567 kl 177.7 | val nll 0.4136 kl 178.9 | 1272s
+kag6c_T0.0020_R4_oracle step 2500 train nll 0.2857 kl 174.9 | val nll 0.4180 kl 177.0 | 1404s
+kag6c_T0.0020_R4_oracle step 2750 train nll 0.2297 kl 175.8 | val nll 0.4152 kl 178.8 | 1531s
+kag6c_T0.0020_R4_oracle step 3000 train nll 0.4138 kl 176.4 | val nll 0.4166 kl 177.7 | 1663s
+kag6c_T0.0020_R4_oracle step 3250 train nll 0.3380 kl 177.2 | val nll 0.4137 kl 178.8 | 1799s
+kag6c_T0.0020_R4_oracle step 3500 train nll 0.3142 kl 178.9 | val nll 0.4085 kl 180.5 | 1930s
+kag6c_T0.0020_R4_oracle step 3750 train nll 0.2267 kl 176.9 | val nll 0.4122 kl 179.3 | 2067s
+kag6c_T0.0020_R4_oracle step 4000 train nll 0.2739 kl 179.3 | val nll 0.4067 kl 180.8 | 2198s
+kag6c_T0.0020_R4_oracle step 4250 train nll 0.2860 kl 174.7 | val nll 0.4118 kl 178.6 | 2330s
+kag6c_T0.0020_R4_oracle step 4500 train nll 0.3473 kl 176.5 | val nll 0.4160 kl 177.6 | 2466s
+kag6c_T0.0020_R4_oracle step 4750 train nll 0.4370 kl 176.3 | val nll 0.4116 kl 179.1 | 2606s
+kag6c_T0.0020_R4_oracle step 5000 train nll 0.3276 kl 179.1 | val nll 0.4081 kl 180.1 | 2736s
+kag6c_T0.0020_R4_oracle step 5250 train nll 0.2653 kl 177.8 | val nll 0.4102 kl 179.4 | 2875s
+kag6c_T0.0020_R4_oracle step 5500 train nll 0.2205 kl 178.5 | val nll 0.4108 kl 179.3 | 3017s
+kag6c_T0.0020_R4_oracle step 5750 train nll 0.3554 kl 179.4 | val nll 0.4099 kl 179.4 | 3157s
+kag6c_T0.0020_R4_oracle step 5999 train nll 0.3374 kl 178.7 | val nll 0.4104 kl 179.3 | 3297s
