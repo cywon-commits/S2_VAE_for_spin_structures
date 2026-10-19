@@ -38,3 +38,6 @@ RuntimeError: cannot reshape tensor of 0 elements into shape [0, 1, 12, 1, 12, 3
 []
 resumed at 6000
 kag6_T0.0005_R1 step 6000 train nll -0.0066 kl 60.1 | val nll 0.1211 kl 57.4 | 8s
+kag6_T0.0005_R1 step 6250 train nll 0.1548 kl 58.8 | val nll 0.1189 kl 57.8 | 86s
+kag6_T0.0005_R1 step 6500 train nll 0.1646 kl 58.4 | val nll 0.1192 kl 57.8 | 164s
+kag6_T0.0005_R1 step 6750 train nll 0.1051 kl 57.8 | val nll 0.1186 kl 57.4 | 238s

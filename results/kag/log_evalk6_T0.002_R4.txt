@@ -1,0 +1,1 @@
+T=0.002 R=4: net ELBO gain 214.2+-8.9 | NLL 0.427 gain 0.8281+-0.0259 | KL 178.9 extra 143.6+-2.4 | -ln m3 0.144 ln m6/ln m3 1.90 ln m9/ln m3 3.19 eps2 0.162
