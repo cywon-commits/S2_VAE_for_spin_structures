@@ -48,3 +48,7 @@ kag6_T0.0005_R1 step 7000 train nll 0.1544 kl 58.7 | val nll 0.1187 kl 57.7 | 79
 kag6_T0.0005_R1 step 7250 train nll 0.1640 kl 58.2 | val nll 0.1193 kl 57.6 | 152s
 kag6_T0.0005_R1 step 7500 train nll 0.1042 kl 58.0 | val nll 0.1177 kl 57.6 | 222s
 kag6_T0.0005_R1 step 7750 train nll 0.1862 kl 57.4 | val nll 0.1198 kl 57.6 | 295s
+[]
+resumed at 7750
+kag6_T0.0005_R1 step 7750 train nll -0.0093 kl 60.3 | val nll 0.1197 kl 57.6 | 9s
+kag6_T0.0005_R1 step 7999 train nll -0.1472 kl 61.3 | val nll 0.1197 kl 57.6 | 90s
