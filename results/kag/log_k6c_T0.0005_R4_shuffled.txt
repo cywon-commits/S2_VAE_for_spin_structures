@@ -1,1 +1,2 @@
 _IncompatibleKeys(missing_keys=['Wc', 'logz.Yq', 'logz.logw'], unexpected_keys=[])
+kag6c_T0.0005_R4_shuffled step 0 train nll -0.5469 kl 244.8 | val nll -0.5579 kl 235.0 | 13s

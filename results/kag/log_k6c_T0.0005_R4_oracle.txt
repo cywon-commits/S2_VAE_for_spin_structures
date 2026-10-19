@@ -1,1 +1,2 @@
 _IncompatibleKeys(missing_keys=['Wc', 'logz.Yq', 'logz.logw'], unexpected_keys=[])
+kag6c_T0.0005_R4_oracle step 0 train nll -0.5478 kl 244.8 | val nll -0.5564 kl 235.0 | 12s
