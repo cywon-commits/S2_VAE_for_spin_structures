@@ -19,8 +19,8 @@ setup()
 def panel(ax, s, dx=-0.02, dy=1.02):
     ax.text(dx, dy, s, transform=ax.transAxes, fontsize=9, fontweight="bold", va="bottom", ha="right")
 def savefig(fig, name):
-    os.makedirs(f"{HERE}/out", exist_ok=True)
-    for ext in ("pdf", "png"): fig.savefig(f"{HERE}/out/{name}.{ext}", bbox_inches="tight", dpi=300)
+    os.makedirs(HERE, exist_ok=True)
+    for ext in ("pdf", "png"): fig.savefig(f"{HERE}/{name}.{ext}", bbox_inches="tight", dpi=300)
     plt.close(fig)
 def load(path):                                                # repo-relative JSON
     return json.load(open(f"{ROOT}/{path}"))
