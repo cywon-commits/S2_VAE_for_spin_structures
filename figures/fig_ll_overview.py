@@ -31,7 +31,7 @@ def fig04():
     from analytic_ms import ms_curve
     fig = plt.figure(figsize=(W2, 5.4)); gs = fig.add_gridspec(2, 4, height_ratios=[1.0, 1.05], hspace=0.38, wspace=0.55)
     ORA = _oracle(); EV = load("results/eval.json"); a = fig.add_subplot(gs[0, 0:2]); Ts = [r["T"] for r in ORA]; S = [r["S"] for r in ORA]
-    a.plot(Ts, S, "o", color=OI["blue"], label="MC (L=12, global $Q$ frame)"); tt, ss = ms_curve(); tt = np.append(tt, tt[-1]); ss = np.append(ss, 0.0); a.plot(tt, ss, "-", color=OI["grey"], label="mean-field Maier–Saupe ($T_{NI}^{MF}=1.32J$)"); a.axvline(1.123, color="k", ls=":", lw=0.8); a.text(1.118, 0.05, "lit. $T_{NI}=1.123J$", fontsize=6, rotation=90, va="bottom", ha="right")
+    a.plot(Ts, S, "o", color=OI["blue"], label="MC (L=12, global $Q$ frame)"); tt, ss = ms_curve(); tt = np.append(tt, tt[-1]); ss = np.append(ss, 0.0); a.plot(tt, ss, "-", color=OI["grey"], label="mean-field MS ($T^{MF}=1.32J$)"); a.axvline(1.123, color="k", ls=":", lw=0.8); a.text(1.118, 0.88, "lit. $T_{NI}=1.123J$", fontsize=6, rotation=90, va="top", ha="right")
     a.set_xlabel("$T/J$"); a.set_ylabel("nematic order $S$"); a.legend(frameon=False, fontsize=6, loc="lower left"); a.set_xlim(0.75, 1.35); panel(a, "a")
     # (c) latent power and (d) KL
     c = fig.add_subplot(gs[0, 2]); runs = [r for r in EV if r["R"] == 1 and r["beta"] == 1.0 and r["alpha"] == 1e-5]; runs.sort(key=lambda r: (r["T"], r["st"]))
@@ -42,37 +42,41 @@ def fig04():
     d.plot([0.95, 1.05], [15.1, 14.0], "D", color=OI["orange"], ms=4, label="separated decoder (v4 B)"); d.axhspan(12, 15, color=OI["green"], alpha=0.25, lw=0); d.text(1.2, 16.5, "12–15", fontsize=5.5, color=OI["green"]); d.set_yscale("log"); d.set_xlabel("$T/J$"); d.set_ylabel("KL (nats)"); d.legend(frameon=False, fontsize=5.3, loc="lower left", bbox_to_anchor=(0.0, 0.0)); panel(d, "d")
     # (b) site distributions R=1 decoders in the director frame: oracle (data fit) on top, v1 R=1 VAE below
     from fitlib import Fitter, real_sh
-    from evaluate import load as load_model, val_data
+    import eval_A
+    from mvae2 import cell_features
     from mvae import sh as sh_e3
-    Tb = [(0.80, "o"), (1.05, "o"), (1.14, "r"), (1.30, "r")]; peak = {}; panels = []
-    for j, (T, st) in enumerate(Tb):
-        S_ = np.load(f"{ROOT}/data/ll_L12_T{T:.3f}_{st}.npy").astype(float)[-50:]; Q = np.einsum('cxyzi,cxyzj->cij', S_, S_) / 12 ** 3; w, V = np.linalg.eigh(Q); frames = V[:, :, [0, 1, 2]]; 
-                # pooled in the per-config director frame (director = column 2 -> pole); fit L=6
-        f = Fitter(6, order=59, alpha=1e-8).fit(np.einsum('cxyzi,cij->cxyzj', S_, V).reshape(-1, 3)[:, [0, 1, 2]]); lam = f.lam
+    # converged models (REQUEST_FIGURES_v2 A1): v2 R=1 at T=0.95,1.05; v2 independent-prior R=2 (cell 0) at T=0.80,1.10 where no converged R=1 model exists
+    Tb = [(0.80, "o", "results/v2B/v2_T0.80o_R2_b1.pt", "R=2"), (0.95, "o", "results/v2/v2_T0.95o_R1_b1_lr1e-3.pt", "R=1"), (1.05, "o", "results/v2/v2_T1.05o_R1_b1_lr1e-3.pt", "R=1"), (1.10, "o", "results/v2B/v2_T1.10o_R2_b1.pt", "R=2")]; panels = []
+    for j, (T, st, run, rtag) in enumerate(Tb):
+        S_ = np.load(f"{ROOT}/data/ll_L12_T{T:.3f}_{st}.npy").astype(float)[-50:]; Q = np.einsum('cxyzi,cxyzj->cij', S_, S_) / 12 ** 3; w, V = np.linalg.eigh(Q)
+        f = Fitter(6, order=59, alpha=1e-8).fit(np.einsum('cxyzi,cij->cxyzj', S_, V).reshape(-1, 3))
         def lp_oracle(Vv, f=f): return real_sh(6, Vv.reshape(-1, 3))[0].dot(f.lam).reshape(Vv.shape[:-1])
-        run = f"results/runs/T{T:.2f}{st}_R1_b1_a1e-05.pt"; ck = torch.load(f"{ROOT}/{run}", weights_only=False); a_ = ck["args"]; from mvae import MVAE
-        m = MVAE(L=12, R=1); m.load_state_dict(ck["state"]); m.eval(); x = torch.tensor(S_[:1]).float()
-        with torch.no_grad(): mu, lv = m.encode(x); lam_v = m.decode(mu)[0, 0].numpy()
+        m, a_ = eval_A.load(f"{ROOT}/{run}"); x = torch.tensor(S_[-1:]).float()
+        with torch.no_grad(): mu, lv = m.encode(feat=cell_features(x, a_["R"])); lam_v = m.decode_cells(mu)[0, 0].numpy()
         def lp_vae(Vv, lam_v=lam_v): return (sh_e3(range(1, 7), torch.tensor(Vv.reshape(-1, 3), dtype=torch.float32)).numpy() @ lam_v).reshape(Vv.shape[:-1])
-        Fr = np.linalg.eigh(Q[0])[1]                                   # frame of the first config: columns ascending; director = last column
-        Fp = np.stack([Fr[:, 0], Fr[:, 1], Fr[:, 2]], -1)
-        for row, (lpf, lab) in enumerate(((lp_oracle, "data fit"), (lp_vae, "VAE decoder"))):
-            panels.append((j, row, lpf, Fp, T))
+        Fr = np.linalg.eigh(Q[-1])[1]; Fp = np.stack([Fr[:, 0], Fr[:, 1], Fr[:, 2]], -1)
+        for row, lpf in enumerate((lp_oracle, lp_vae)): panels.append((j, row, lpf, Fp, T))
     # draw 2 rows inside the lower grid cells using sub-gridspec
     for j in range(4):
         sub = gs[1, j].subgridspec(2, 1, hspace=0.05); vm = None
         for row in range(2):
             jj, rr, lpf, Fp, T = panels[2 * j + row]; ax = fig.add_subplot(sub[row], projection="mollweide"); im, pm = plot_sphere_density(ax, lpf, frame=None if row == 0 else Fp, vmax=vm if row == 1 else None); vm = pm if row == 0 else vm
             ax.set_title(f"$T={Tb[j][0]}$" if row == 0 else "", fontsize=6.5, pad=2)
-            if j == 0: ax.text(-0.15, 0.5, ["data fit", "VAE $R{=}1$"][row], transform=ax.transAxes, rotation=90, va="center", ha="center", fontsize=6)
+            if j == 0: ax.text(-0.15, 0.5, ["data fit", "VAE (converged)"][row], transform=ax.transAxes, rotation=90, va="center", ha="center", fontsize=6)
+            if row == 1: ax.text(0.5, -0.12, Tb[j][3], transform=ax.transAxes, ha="center", fontsize=6)
     fig.text(0.07, 0.49, "b", fontsize=9, fontweight="bold")
     savefig(fig, "fig04")
-    MP["fig04"] = dict(title="Nematic overview", panels={"a": "results/oracle.json (S per T), analytic mean-field Maier-Saupe (src/analytic_ms_heatkernel.py)", "b": "data/ll_L12_T*_{o,r}.npy last 50 snapshots (multipole refit L=6, fitlib) and v1 R=1 VAE decoders results/runs/T*_R1_b1_a1e-05.pt at the first snapshot, mean-z decode, director frame; NOTE v1 models are not converged (a2 underestimated at low T, REPORT.md)", "c": "results/eval.json latent_power_frac (v1)", "d": "results/eval.json kl (v1), results/v2_table_stageB.md (converged R=1), REPORT_v4 task B (15.1, 14.0)"})
+    MP["fig04"] = dict(title="Nematic overview", panels={"a": "results/oracle.json (S per T), analytic mean-field Maier-Saupe (src/analytic_ms_heatkernel.py)", "b": "data/ll_L12_T*_o.npy last 50 snapshots (multipole refit L=6, fitlib; director frame) and converged v2 decoders (results/v2/v2_T0.95o_R1.., v2_T1.05o_R1..: R=1; results/v2B/v2_T0.80o_R2, v2_T1.10o_R2: R=2, cell 0, because no converged R=1 model exists at T=0.80, 1.10), last validation snapshot, mean-z decode. The v1 R=1 models used before (results/runs) were not converged and were removed from this panel", "c": "results/eval.json latent_power_frac (v1)", "d": "results/eval.json kl (v1), results/v2_table_stageB.md (converged R=1), REPORT_v4 task B (15.1, 14.0)"})
 
 def fig05():
     fig, ax = plt.subplots(1, 2, figsize=(W1 * 1.9, 2.7)); a, b = ax
     T1 = md_table("results/table_E1.md"); T = np.array([num(r["T"]) for r in T1]); st = [r["st"] for r in T1]; ve = np.array([num(r["odd/even VAE"]) for r in T1]); orc = np.array([num(r["odd/even oracle"]) for r in T1])
-    a.semilogy(T, ve, "o", color=OI["verm"], ms=3.5, label="VAE (v1 run)"); a.semilogy(T, orc, "s", color=OI["blue"], ms=3.5, label="oracle fit (data)");     a.axhline(1e-3, color="k", ls=":", lw=0.8); a.text(1.18, 1.3e-3, "criterion $10^{-3}$", fontsize=6)
+    CV = load("figures/data/converged_oddeven.json"); mk = {1: "o", 2: "s", 3: "^", 4: "D"}
+    for R in (1, 2, 3, 4):
+        rr = [r for r in CV if r["R"] == R]
+        if rr: a.semilogy([r["T"] for r in rr], [r["odd_even"] for r in rr], mk[R], color=OI["verm"], ms=3.5, mfc=OI["verm"] if R == 1 else "none", label=f"VAE (v2), $R={R}$")
+    a.semilogy(T, orc, "s", color=OI["blue"], ms=3.5, label="oracle fit (data)")
+    a.axhline(1e-3, color="k", ls=":", lw=0.8); a.text(1.18, 1.3e-3, "criterion $10^{-3}$", fontsize=6); a.set_ylim(1e-9, 3)
     a.axvline(1.123, color=OI["grey"], ls="--", lw=0.7); a.set_xlabel("$T/J$"); a.set_ylabel("odd / even multipole power"); a.legend(frameon=False, fontsize=6, loc="upper left"); panel(a, "a")
     Ls = [1, 2, 4]; rows = {}
     for l in open(f"{ROOT}/results/v2_table_f_frame_oracle.md"):
@@ -84,4 +88,4 @@ def fig05():
         b.semilogy(Ls, vae, "o-", color=COL_LL[t], ms=3.5, label=f"$T={t:.2f}$"); b.semilogy(Ls, orc_, "x", color=COL_LL[t], ms=5)
     b.set_xticks([1, 2, 4]); b.set_xlabel("decoder order $L$ (refit in the decoder frame)"); b.set_ylabel(r"$\Delta$NLL vs $L=6$ (nats/site)"); b.legend(frameon=False, fontsize=5.5, title="lines: VAE frame, ×: oracle frame", title_fontsize=5.3, loc="upper right", ncol=2); panel(b, "b")
     fig.tight_layout(); savefig(fig, "fig05")
-    MP["fig05"] = dict(title="Nematic symmetry verdict", panels={"a": "results/table_E1.md (odd/even VAE: v1 runs; oracle)", "b": "results/v2_table_f_frame_oracle.md (VAE-frame and oracle-frame refit, dNLL vs L=6)"})
+    MP["fig05"] = dict(title="Nematic symmetry verdict", panels={"a": "figures/data/converged_oddeven.json (compute_converged_oddeven.py: odd/even power of the decoded lambda, mean-z, 20 validation snapshots, converged v2 models R=1 (T=0.95,1.05) and R=2-4 (all four T)); oracle: results/table_E1.md. The evalA_*_R1_* JSON field odd_even is inverted (1.7e6) and was not used. The v1 runs (2.6e-3..) are not shown", "b": "results/v2_table_f_frame_oracle.md (VAE-frame and oracle-frame refit, dNLL vs L=6)"})

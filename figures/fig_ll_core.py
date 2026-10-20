@@ -52,7 +52,7 @@ def kag_channel_G():
     return dict(local=190 / 16.0, ring=(89 - 24) / 47.5, defect=15.3)
 def fig08():
     c = D["cells"]; amp = D["amp"]; N = 1728; ncell = {2: 8, 3: 27, 4: 64}; nsite = {2: 216, 3: 64, 4: 27}
-    fig, ax = plt.subplots(2, 2, figsize=(W2, 5.6)); (a, b), (cx, d) = ax
+    fig, ax = plt.subplots(1, 3, figsize=(W2, 2.9)); a, b, d = ax
     # (a) channel gains stacked + VAE points
     bw = 0.34; xs = []; lab = []; pos = 0
     biax = {2: 0.004, 3: 0.013, 4: 0.025}                                   # NLL gain of the biaxial deviation (v4 subspace minus v5 1.3 ablation, T=1.05; REPORT_v5 sec 1.3)
@@ -65,32 +65,19 @@ def fig08():
         pos += 0.7
     gv = [num(ta(T, R, "NLL gain")) for T in (0.95, 1.05) for R in (2, 3, 4)]; a.plot(xs, gv, "ko", ms=4, label="VAE (up/down prior)")
     g5 = [num(next(r["NLL gain vs R=1"] for r in T5 if int(num(r["R"])) == R and r["model"].startswith("1.4"))) for R in (2, 3, 4)]; a.plot(xs[3:], g5, "D", color="none", mec="k", ms=4, label="VAE (separated + subspace)")
-    a.set_xticks(xs); a.set_xticklabels(lab); a.set_xlabel(r"$R$   (left block $T=0.95$, right block $T=1.05$)"); a.set_ylabel("NLL gain vs $R=1$ (nats/site)"); a.legend(frameon=False, fontsize=6, loc="upper left"); panel(a, "a")
+    a.set_xticks(xs); a.set_xticklabels(lab); a.set_xlabel(r"$R$ (left: $T=0.95$, right: $T=1.05$)"); a.set_ylabel("NLL gain vs $R=1$ (nats/site)"); a.legend(frameon=False, fontsize=5.4, loc="upper left"); panel(a, "a")
     # (b) KL accounting at T=1.05
     Rr = [2, 3, 4]; w3 = 0.2; I = c["1.05"]["2"]["I"]; kl1 = 20.3; Gd = {R: c["1.05"][str(R)]["G"] for R in Rr}
     hier_dir = [ncell[R] * np.log1p(Gd[R]) for R in Rr]; hier_amp = [ncell[R] * 0.5 * np.log1p(2 * amp["1.05"][str(R)]["Ga"]) for R in Rr]; indep = [ncell[R] * kl1 * np.log(nsite[R] * I) / np.log(N * I) - kl1 for R in Rr]
     obs2 = [nums(ta(1.05, R, "v2 independent: gain / extra KL / net"))[1] for R in Rr]; obs4 = [num(ta(1.05, R, "extra KL")) for R in Rr]; obs5 = [num(next(r["extra KL vs R=1"] for r in T5 if int(num(r["R"])) == R and r["model"].startswith("1.4"))) for R in Rr]
     x = np.arange(3); b.bar(x - 1.5 * w3, np.array(hier_dir) + np.array(hier_amp), w3, color="none", edgecolor="k", hatch="////", label="hierarchical budget (dir + amp)"); b.bar(x - 0.5 * w3, indep, w3, color="none", edgecolor=OI["grey"], hatch="\\\\\\\\", label="independent-prior estimate")
     b.bar(x + 0.5 * w3, obs2, w3, color=OI["grey"], label="observed: independent (v2)"); b.bar(x + 1.5 * w3, obs4, w3, color=OI["sky"], label="observed: up/down (v4)"); b.bar(x + 2.5 * w3, obs5, w3, color=OI["blue"], label="observed: separated+subspace (v5)")
-    b.set_xticks(x + 0.5 * w3); b.set_xticklabels(Rr); b.set_xlabel("$R$ ($T=1.05$)"); b.set_ylabel("extra KL vs $R=1$ (nats / config)"); b.legend(frameon=False, fontsize=5.6, loc="upper left"); panel(b, "b")
-    # (c) universal curve
-    G = np.logspace(-1.3, 2.0, 300)
-    for dd, ls in ((1, ":"), (2, "-"), (3, "--")): cx.plot(G, univ(G, dd), ls, color=OI["grey"], lw=1.0); cx.text(70, univ(70, dd) + (0.03 if dd == 1 else -0.03 if dd == 3 else 0.0), f"$d={dd}$", fontsize=6, ha="right", va="center", color=OI["grey"])
-    cx.plot(G, 1 - np.log1p(G) / G * 0 - 0 * G + 0 * G, alpha=0)                                     # keep limits
-    for R, mk in zip(Rr, ("o", "s", "^")):
-        cx.plot(Gd[R], univ(Gd[R], 2), mk, color=COL_CH["director"], label="director (nematic)" if R == 2 else None); cx.plot(amp["1.05"][str(R)]["Ga"], univ(amp["1.05"][str(R)]["Ga"], 1), mk, color=COL_CH["amp"], label="amplitude" if R == 2 else None)
-        gb = nsite[R] * biax[R]; cx.plot(gb, univ(gb, 2), mk, color=COL_CH["biax"], label="biaxial" if R == 2 else None)
-    kg = kag_channel_G(); cx.plot(kg["local"], univ(kg["local"], 3), "*", color=COL_CH["local"], ms=8, mec="k", mew=0.3, label="kagome local frame ($d=3$)"); cx.plot(kg["ring"], univ(kg["ring"], 1), "*", color=COL_CH["ring"], ms=8, mec="k", mew=0.3, label="kagome ring rotation")
-    cx.plot(kg["defect"], univ(kg["defect"], 1), "*", color=COL_CH["defect"], ms=8, mec="k", mew=0.3, label="kagome defect ($d\\!=\\!1$ assumed)")
-    for R, mk in zip(Rr, ("o", "s", "^")):                                                         # measured VAE net / NLL-gain (all channels, T=1.05, v5 1.4)
-        ng = nums(next(r["net ELBO gain vs R=1"] for r in T5 if int(num(r["R"])) == R and r["model"].startswith("1.4")))[0]; gain = g5[R - 2] * N; cx.plot(gain / ncell[R], ng / gain, mk, mfc="none", mec="k", label="VAE measured (all channels)" if R == 2 else None)
-    cx.plot(618.7 / 16, 417.6 / 618.7, "*", color="none", mec="k", ms=9, label="kagome VAE (ii)$-$(iv)")
-    cx.set_xscale("log"); cx.set_xlabel(r"information gain per unit, $G$ (nats)"); cx.set_ylabel(r"net gain / $G$"); cx.set_ylim(-0.05, 1.0); cx.legend(frameon=False, fontsize=5.6, loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=2, handletextpad=0.2, columnspacing=0.8); panel(cx, "c")
+    b.set_xticks(x + 0.5 * w3); b.set_xticklabels(Rr); b.set_xlabel("$R$ ($T=1.05$)"); b.set_ylabel("extra KL vs $R=1$ (nats / config)"); b.legend(frameon=False, fontsize=5.0, loc="upper left"); panel(b, "b")
     # (d) predicted vs achieved net ELBO gain
     pred = [num(ta(1.05, R, "predicted")) for R in Rr]; iso = [num(ta(1.05, R, "net ELBO gain")) for R in Rr]; sub = [nums(next(r["net ELBO gain vs R=1"] for r in T5 if int(num(r["R"])) == R and r["model"].startswith("subspace")))[0] for R in Rr]; v5 = [nums(next(r["net ELBO gain vs R=1"] for r in T5 if int(num(r["R"])) == R and r["model"].startswith("1.4")))[0] for R in Rr]
     w4 = 0.2; x = np.arange(3); d.bar(x - 1.5 * w4, pred, w4, color="none", edgecolor="k", hatch="////", label="predicted"); d.bar(x - 0.5 * w4, iso, w4, color=OI["grey"], label="isotropic (v4)"); d.bar(x + 0.5 * w4, sub, w4, color=OI["sky"], label="subspace cov. (v4)"); d.bar(x + 1.5 * w4, v5, w4, color=OI["blue"], label="separated + subspace (v5)")
     for k in range(3): d.text(x[k] + 1.5 * w4, v5[k] + 2, f"{100 * v5[k] / pred[k]:.0f}%", ha="center", fontsize=6)
-    d.set_xticks(x); d.set_xticklabels(Rr); d.set_xlabel("$R$ ($T=1.05$)"); d.set_ylabel("net ELBO gain vs $R=1$ (nats / config)"); d.legend(frameon=False, fontsize=6, loc="upper left"); panel(d, "d")
-    fig.tight_layout(); savefig(fig, "fig08")
+    d.set_xticks(x); d.set_xticklabels(Rr); d.set_xlabel("$R$ ($T=1.05$)"); d.set_ylabel("net ELBO gain vs $R=1$ (nats / config)"); d.legend(frameon=False, fontsize=5.6, loc="upper left"); panel(d, "c")
+    fig.tight_layout(w_pad=1.2); savefig(fig, "fig08")
     MP["fig08"] = dict(title="Information accounting", panels={"a": "ll_derived.json cells.gain_net (director), amp.gain (amplitude); biaxial: results/v4_table_A.md/v5_table_13_14.md (v4 subspace NLL gain minus 1.3 ablation: 0.004/0.013/0.025, REPORT_v5 sec 1.3, hard-coded); points: v4_table_A.md, v5_table_13_14.md",
-        "b": "budgets: ll_derived.json (G, amp Ga) with the formulas of budget2.py/amp_gain.py; independent-prior estimate: budget2.py formula with R=1 KL=20.3; observed: results/v4_table_A.md (v2 indep., v4), v5_table_13_14.md (v5)", "c": "G values: ll_derived.json (nematic), results/layered_gain*.txt and results/kag/regress_k6u_T0.0020.json (kagome); measured VAE ratios: v5 table; kagome VAE (ii)-(iv): REPORT_E3_v4", "d": "results/v4_table_A.md, results/v5_table_13_14.md"})
+        "b": "budgets: ll_derived.json (G, amp Ga) with the formulas of budget2.py/amp_gain.py; independent-prior estimate: budget2.py formula with R=1 KL=20.3; observed: results/v4_table_A.md (v2 indep., v4), v5_table_13_14.md (v5)", "c": "results/v4_table_A.md, results/v5_table_13_14.md (the former panel c, universal curve, is now the stand-alone Fig. 14)"})
