@@ -1,0 +1,1 @@
+for T in 0.0005 0.002; do for r in kag_T${T}_R1 kagu_T${T}_R4 kag6_T${T}_R4 kagu_T${T}_R12; do [ -f ../../results/kag/$r.pt ] && OMP_NUM_THREADS=1 python3 run_B_kag.py $r.pt 2000 | tail -1; done; done
