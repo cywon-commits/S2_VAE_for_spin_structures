@@ -8,3 +8,6 @@ kagu_T0.0020_R3.pt {'prior': (554.38, 200.11), 'posterior': (216.31, 94.88)} 240
 kagu_T0.0020_R4.pt {'prior': (576.91, 217.17), 'posterior': (211.92, 94.61)} 108s
 kagu_T0.0020_R6.pt {'prior': (532.31, 214.56), 'posterior': (194.13, 90.57)} 163s
 kagu_T0.0020_R12.pt {'prior': (313.86, 166.67), 'posterior': (80.82, 46.5)} 545s
+kag6_T0.0020_R4.pt {'prior': (467.13, 238.66), 'posterior': (216.24, 94.38)} 349s
+kag6u_T0.0020_R4_nolatent.pt {'prior': (45.67, 47.67), 'posterior': (45.88, 47.67)} 398s
+kag6u_T0.0020_R4_oracle.pt {'posterior': (21.37, 83.13)} 222s

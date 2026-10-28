@@ -3,7 +3,7 @@ def ana(path):
     d = np.load(path); lw = d["logw"]; out = []
     for j, h in enumerate(d["h"]):
         l = lw[:, j] - lw[:, j].max(); w = np.exp(l); s = w.sum(); ess = s * s / (w * w).sum()
-        out.append(dict(h=float(h), m=float((w * d["mproj"][:, j]).sum() / s), m_corr=float((w * d["mproj"][:, j]).sum() / s - d["m0"].mean()), nuh2=float((w * d["nuh2"]).sum() / s), ess=float(ess)))
+        out.append(dict(h=float(h), m=float((w * d["mproj"][:, j]).sum() / s), m_corr=float((w * d["mproj"][:, j]).sum() / s - d["m0"].mean()), nuh2=float((w * d["nuh2"]).sum() / s), ess=float(ess), m_plot=float((w * d['mproj'][:, j]).sum() / s - (d['m0'].mean() if ess >= 100 else 0.0))))
     return out
 if __name__ == "__main__":
     import sys
