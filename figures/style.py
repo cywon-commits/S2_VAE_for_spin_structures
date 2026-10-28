@@ -11,15 +11,18 @@ COL_KAG = {0.0005: OI["blue"], 0.001: OI["sky"], 0.002: OI["orange"], 0.004: OI[
 MARK_R = {1: "o", 2: "s", 3: "^", 4: "D", 6: "v", 12: "P"}
 # one colour per information channel (used in Figs 8, 13, 14)
 COL_CH = dict(director=OI["blue"], amp=OI["orange"], biax=OI["green"], local=OI["sky"], defect=OI["verm"], ring=OI["purple"], colour=OI["grey"], vae=OI["black"])
+LAYOUT = {}
 def setup():
     plt.rcParams.update({"font.size": 8, "axes.labelsize": 8, "axes.titlesize": 8, "legend.fontsize": 7, "xtick.labelsize": 7.5, "ytick.labelsize": 7.5, "lines.linewidth": 1.2, "lines.markersize": 4,
         "axes.linewidth": 0.7, "xtick.major.width": 0.7, "ytick.major.width": 0.7, "figure.dpi": 100, "savefig.dpi": 300, "pdf.fonttype": 42, "ps.fonttype": 42, "mathtext.default": "regular",
         "font.family": "DejaVu Sans", "axes.spines.top": False, "axes.spines.right": False})
 setup()
 def panel(ax, s, dx=-0.02, dy=1.02):
-    ax.text(dx, dy, s, transform=ax.transAxes, fontsize=9, fontweight="bold", va="bottom", ha="right")
+    dy = max(dy, 1.06) if dy > 1.0 else dy
+    ax.text(dx - 0.04, dy, s, transform=ax.transAxes, fontsize=9, fontweight="bold", va="bottom", ha="right")
 def savefig(fig, name):
     os.makedirs(HERE, exist_ok=True)
+    import overlap_check; LAYOUT[name] = overlap_check.check(fig, name)
     for ext in ("pdf", "png"): fig.savefig(f"{HERE}/{name}.{ext}", bbox_inches="tight", dpi=300)
     plt.close(fig)
 def load(path):                                                # repo-relative JSON

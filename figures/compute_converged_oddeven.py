@@ -1,7 +1,7 @@
 """Odd/even multipole power ratio of the decoded lambda (mean-z decode, 20 validation snapshots) for the nematic v2 models, recomputed directly with eval_A.power_ratio.
 Reason: results/v2/evalA_*_R1_*.json store odd_even = 1.7e6 (inverted; the other evalA files store the correct 6e-7).  Output: figures/data/converged_oddeven.json"""
 import sys, glob, json, numpy as np, torch
-ROOT = "/home/user/S2_VAE_for_spin_structures"; sys.path.insert(0, f"{ROOT}/src")
+import os; ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__))); sys.path.insert(0, f"{ROOT}/src")
 import eval_A
 from mvae2 import cell_features
 torch.set_num_threads(2); out = []
