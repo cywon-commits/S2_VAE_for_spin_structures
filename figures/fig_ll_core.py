@@ -15,7 +15,7 @@ def fig06():
     for T in TS:
         mm = m[str(T)]; a.errorbar(mm["a_mf"], mm["a_loc"], xerr=mm["a_mf_se"], yerr=mm["a_loc_se"], fmt="*", ms=7, color=COL_LL[T], mec="k", mew=0.4, zorder=5, label="data (oracle)" if T == 0.80 else None)
         for R in (1, 2, 3, 4): a.plot(6 * 0 + m[str(T)]["a_mf"] + 0.0, tc(T, R, "a_loc"), MARK_R[R], color=COL_LL[T], mfc="none" if R > 1 else COL_LL[T], ms=4, label=f"VAE R={R}" if T == 0.80 else None)
-    a.set_xlim(lim); a.set_ylim(lim); a.set_xlabel(r"mean-field $\beta zJS=6S/T$"); a.set_ylabel(r"local field $a_{loc}$ (moment estimator)"); a.legend(frameon=False, loc="upper left", fontsize=6); panel(a, "a")
+    a.set_xlim(lim); a.set_ylim(lim); a.set_xlabel(r"mean-field $\beta zJS=6S/T$"); a.set_ylabel(r"local field $a_{loc}$ (moment estimator)"); a.legend(frameon=False, loc="upper left", fontsize=5.6, ncol=2, columnspacing=0.6, handletextpad=0.3); a.set_ylim(lim[0], 7.6); panel(a, "a")
     # (b) a2 (smeared fit), a_loc, mean field vs T
     b = ax[1]; Tt = np.array([r["T"] for r in ORA if r["T"] <= 1.10]); a2 = np.array([r["a2"] for r in ORA if r["T"] <= 1.10]); mf = np.array([r["a2_MF"] for r in ORA if r["T"] <= 1.10])
     b.plot(Tt, mf, "-", color=OI["grey"], label=r"mean field $\beta zJS$"); b.plot(Tt, a2, "o-", color=OI["verm"], label=r"fitted $a_2$ (smeared)"); b.errorbar(TS, [m[str(T)]["a_loc"] for T in TS], yerr=[m[str(T)]["a_loc_se"] for T in TS], fmt="s", color=OI["blue"], mfc="none", label=r"$a_{loc}$ (unsmeared)")
@@ -33,7 +33,7 @@ def fig07():
         s2site = m[str(T)]["sigma2_site"]; pred = [s2site] + [max(s2site - c[str(T)][str(R)]["sigma2_cell"], 0) for R in (2, 3, 4)]
         a.plot(Rs, pred, "-", color=COL_LL[T], lw=1.0); a.plot(Rs, [tc(T, R, "sigma2 (cell-axes frame oracle)") for R in Rs], "o", color=COL_LL[T], label=f"$T={T:.2f}$")
     a.set_xticks(Rs); a.set_xlabel("latent resolution $R$"); a.set_ylabel(r"$\sigma^2_{VAE}(R)$ (rad$^2$)"); from matplotlib.lines import Line2D
-    h = [Line2D([], [], color=COL_LL[T], marker="o", ls="-", ms=3.5, lw=1) for T in TS]; a.legend(h, [f"$T={T:.2f}$" for T in TS], frameon=False, fontsize=6, ncol=2, loc="upper right", title="line: prediction, dots: VAE", title_fontsize=6); panel(a, "a")
+    h = [Line2D([], [], color=COL_LL[T], marker="o", ls="-", ms=3.5, lw=1) for T in TS]; a.legend(h, [f"$T={T:.2f}$" for T in TS], frameon=False, fontsize=6, ncol=2, loc="upper right", title="line: prediction, dots: VAE", title_fontsize=6); a.set_ylim(0, 0.115); panel(a, "a")
     b = ax[1]; ns = np.array([216, 64, 27])
     for T in TS:
         y = np.array([c[str(T)][str(R)]["sigma2_cell"] for R in (2, 3, 4)]); e = np.array([c[str(T)][str(R)]["sigma2_cell_se"] for R in (2, 3, 4)]); b.errorbar(ns, y, yerr=e, fmt="o-", color=COL_LL[T])
@@ -43,7 +43,7 @@ def fig07():
         cells = np.array([8, 27, 64]); pred = np.array([cells[k] * c[str(T)][str(R)]["G"] / N for k, R in enumerate((2, 3, 4))]); orc = np.array([c[str(T)][str(R)]["gain_net"] for R in (2, 3, 4)])
         cc.plot([2, 3, 4], pred, "-", color=COL_LL[T], lw=1.0); cc.plot([2, 3, 4], orc, "x", color=COL_LL[T], ms=5)
         cc.plot([2, 3, 4], [num(ta(T, R, "NLL gain")) for R in (2, 3, 4)], "o", color=COL_LL[T], label=f"$T={T:.2f}$")
-    cc.set_xticks([2, 3, 4]); cc.set_xlabel("latent resolution $R$"); cc.set_ylabel("NLL gain vs $R=1$ (nats/site)"); h = [Line2D([], [], color=COL_LL[T], marker="o", ls="-", ms=3.5, lw=1) for T in TS] + [Line2D([], [], color="k", ls="-", lw=1), Line2D([], [], color="k", marker="x", ls="", ms=4), Line2D([], [], color="k", marker="o", ls="", ms=3.5)]; cc.legend(h, [f"$T={T:.2f}$" for T in TS] + [r"pred. $G=\frac{1}{2}nI\sigma^2_{cell}$", "cell-frame oracle", "VAE (up/down)"], frameon=False, fontsize=5.8, loc="upper left", ncol=1); cc.set_ylim(0.02, 0.24); panel(cc, "c")
+    cc.set_xticks([2, 3, 4]); cc.set_xlabel("latent resolution $R$"); cc.set_ylabel("NLL gain vs $R=1$ (nats/site)"); h = [Line2D([], [], color=COL_LL[T], marker="o", ls="-", ms=3.5, lw=1) for T in TS] + [Line2D([], [], color="k", ls="-", lw=1), Line2D([], [], color="k", marker="x", ls="", ms=4), Line2D([], [], color="k", marker="o", ls="", ms=3.5)]; cc.legend(h, [f"$T={T:.2f}$" for T in TS] + [r"pred. $G=\frac{1}{2}nI\sigma^2_{cell}$", "cell-frame oracle", "VAE (up/down)"], frameon=False, fontsize=5.4, loc="upper left", ncol=2, columnspacing=0.6); cc.set_ylim(0.02, 0.36); panel(cc, "c")
     fig.tight_layout(w_pad=1.0); savefig(fig, "fig07")
     MP["fig07"] = dict(title="Latent resolution measured by smearing", panels={"a": "VAE: results/v4_table_C.md (sigma2, cell-axes frame oracle); line: ll_derived.json moments.sigma2_site minus cells.sigma2_cell", "b": "ll_derived.json cells (budget.py procedure, 100 configs, shuffle control, 5-block s.e.)", "c": "line: ll_derived.json cells.G (G=n I sigma2_cell/2, I from oracle a2) x cells/1728; x: ll_derived.json cells.gain_net (cell_gain.py procedure); points: results/v4_table_A.md NLL gain column"})
 def univ(G, d): G = np.asarray(G, float); return 1 - (d / (2 * G)) * np.log1p(2 * G / d)
@@ -65,19 +65,19 @@ def fig08():
         pos += 0.7
     gv = [num(ta(T, R, "NLL gain")) for T in (0.95, 1.05) for R in (2, 3, 4)]; a.plot(xs, gv, "ko", ms=4, label="VAE (up/down prior)")
     g5 = [num(next(r["NLL gain vs R=1"] for r in T5 if int(num(r["R"])) == R and r["model"].startswith("1.4"))) for R in (2, 3, 4)]; a.plot(xs[3:], g5, "D", color="none", mec="k", ms=4, label="VAE (separated + subspace)")
-    a.set_xticks(xs); a.set_xticklabels(lab); a.set_xlabel(r"$R$ (left: $T=0.95$, right: $T=1.05$)"); a.set_ylabel("NLL gain vs $R=1$ (nats/site)"); a.legend(frameon=False, fontsize=5.4, loc="upper left"); panel(a, "a")
+    a.set_xticks(xs); a.set_xticklabels(lab); a.set_xlabel(r"$R$ (left: $T=0.95$, right: $T=1.05$)"); a.set_ylabel("NLL gain vs $R=1$ (nats/site)"); a.legend(frameon=False, fontsize=5.4, loc="upper left"); a.set_ylim(0, 0.27); panel(a, "a")
     # (b) KL accounting at T=1.05
     Rr = [2, 3, 4]; w3 = 0.2; I = c["1.05"]["2"]["I"]; kl1 = 20.3; Gd = {R: c["1.05"][str(R)]["G"] for R in Rr}
     hier_dir = [ncell[R] * np.log1p(Gd[R]) for R in Rr]; hier_amp = [ncell[R] * 0.5 * np.log1p(2 * amp["1.05"][str(R)]["Ga"]) for R in Rr]; indep = [ncell[R] * kl1 * np.log(nsite[R] * I) / np.log(N * I) - kl1 for R in Rr]
     obs2 = [nums(ta(1.05, R, "v2 independent: gain / extra KL / net"))[1] for R in Rr]; obs4 = [num(ta(1.05, R, "extra KL")) for R in Rr]; obs5 = [num(next(r["extra KL vs R=1"] for r in T5 if int(num(r["R"])) == R and r["model"].startswith("1.4"))) for R in Rr]
     x = np.arange(3); b.bar(x - 1.5 * w3, np.array(hier_dir) + np.array(hier_amp), w3, color="none", edgecolor="k", hatch="////", label="hierarchical budget (dir + amp)"); b.bar(x - 0.5 * w3, indep, w3, color="none", edgecolor=OI["grey"], hatch="\\\\\\\\", label="independent-prior estimate")
     b.bar(x + 0.5 * w3, obs2, w3, color=OI["grey"], label="observed: independent (v2)"); b.bar(x + 1.5 * w3, obs4, w3, color=OI["sky"], label="observed: up/down (v4)"); b.bar(x + 2.5 * w3, obs5, w3, color=OI["blue"], label="observed: separated+subspace (v5)")
-    b.set_xticks(x + 0.5 * w3); b.set_xticklabels(Rr); b.set_xlabel("$R$ ($T=1.05$)"); b.set_ylabel("extra KL vs $R=1$ (nats / config)"); b.legend(frameon=False, fontsize=5.0, loc="upper left"); panel(b, "b")
+    b.set_xticks(x + 0.5 * w3); b.set_xticklabels(Rr); b.set_xlabel("$R$ ($T=1.05$)"); b.set_ylabel("extra KL vs $R=1$ (nats / config)"); b.legend(frameon=False, fontsize=5.0, loc="upper left"); b.set_ylim(0, 1080); panel(b, "b")
     # (d) predicted vs achieved net ELBO gain
     pred = [num(ta(1.05, R, "predicted")) for R in Rr]; iso = [num(ta(1.05, R, "net ELBO gain")) for R in Rr]; sub = [nums(next(r["net ELBO gain vs R=1"] for r in T5 if int(num(r["R"])) == R and r["model"].startswith("subspace")))[0] for R in Rr]; v5 = [nums(next(r["net ELBO gain vs R=1"] for r in T5 if int(num(r["R"])) == R and r["model"].startswith("1.4")))[0] for R in Rr]
     w4 = 0.2; x = np.arange(3); d.bar(x - 1.5 * w4, pred, w4, color="none", edgecolor="k", hatch="////", label="predicted"); d.bar(x - 0.5 * w4, iso, w4, color=OI["grey"], label="isotropic (v4)"); d.bar(x + 0.5 * w4, sub, w4, color=OI["sky"], label="subspace cov. (v4)"); d.bar(x + 1.5 * w4, v5, w4, color=OI["blue"], label="separated + subspace (v5)")
     for k in range(3): d.text(x[k] + 1.5 * w4, v5[k] + 2, f"{100 * v5[k] / pred[k]:.0f}%", ha="center", fontsize=6)
-    d.set_xticks(x); d.set_xticklabels(Rr); d.set_xlabel("$R$ ($T=1.05$)"); d.set_ylabel("net ELBO gain vs $R=1$ (nats / config)"); d.legend(frameon=False, fontsize=5.6, loc="upper left"); panel(d, "c")
+    d.set_xticks(x); d.set_xticklabels(Rr); d.set_xlabel("$R$ ($T=1.05$)"); d.set_ylabel("net ELBO gain vs $R=1$ (nats / config)"); d.legend(frameon=False, fontsize=5.6, loc="upper left"); d.set_ylim(0, 205); panel(d, "c")
     fig.tight_layout(w_pad=1.2); savefig(fig, "fig08")
     MP["fig08"] = dict(title="Information accounting", panels={"a": "ll_derived.json cells.gain_net (director), amp.gain (amplitude); biaxial: results/v4_table_A.md/v5_table_13_14.md (v4 subspace NLL gain minus 1.3 ablation: 0.004/0.013/0.025, REPORT_v5 sec 1.3, hard-coded); points: v4_table_A.md, v5_table_13_14.md",
         "b": "budgets: ll_derived.json (G, amp Ga) with the formulas of budget2.py/amp_gain.py; independent-prior estimate: budget2.py formula with R=1 KL=20.3; observed: results/v4_table_A.md (v2 indep., v4), v5_table_13_14.md (v5)", "c": "results/v4_table_A.md, results/v5_table_13_14.md (the former panel c, universal curve, is now the stand-alone Fig. 14)"})

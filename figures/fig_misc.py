@@ -1,9 +1,9 @@
 """Figures 2, 3 and supplementary S1-S6.  Data: figures/data/misc.json (compute_misc.py), figures/data/ll_derived.json."""
-import sys, json, numpy as np
+import sys, os, json, numpy as np
 from style import *
 from tables import md_table, num, nums
 sys.path.insert(0, f"{ROOT}/src"); sys.path.insert(0, f"{ROOT}/src/kag"); sys.path.insert(0, f"{ROOT}/src/layered"); sys.path.insert(0, f"{ROOT}/src/kagome")
-MISC = json.load(open(f"{HERE}/data/misc.json")); LLD = json.load(open(f"{HERE}/data/ll_derived.json")); MP = {}
+MISC = json.load(open(f"{HERE}/data/misc.json")); LLD = json.load(open(f"{HERE}/data/ll_derived.json")) if os.path.exists(f"{HERE}/data/ll_derived.json") else {}; MP = {}
 GRP = ["D∞h", "D3h", "D3d", "C3v", "C6v", "C∞v"]; GCOL = [OI["blue"], OI["verm"], OI["orange"], OI["green"], OI["sky"], OI["purple"]]
 def fig02():
     fig = plt.figure(figsize=(W1, 3.3)); ax = fig.add_axes([0.12, 0.12, 0.85, 0.82]); w = 0.13; sym = MISC["sym"]
@@ -14,7 +14,7 @@ def fig02():
     savefig(fig, "fig02")
     MP["fig02"] = dict(title="Site selection rules", panels={"-": "figures/data/misc.json sym (compute_misc.py = sym_check.py; group-averaged representation traces; D_inf and C_inf approximated by D60/C60); matches Appendix A of REQUEST_FIGURES exactly"})
 def fig03():
-    fig = plt.figure(figsize=(W2, 5.0)); gs = fig.add_gridspec(2, 6, hspace=0.5, wspace=1.6)
+    fig = plt.figure(figsize=(W2, 5.0)); gs = fig.add_gridspec(2, 6, hspace=0.5, wspace=2.3)
     # (a) logZ error and required degree
     a = fig.add_subplot(gs[0, 0:2]); E = MISC["logz_err"]; ks = np.array(E["kappa"], float)
     for o, col in zip(E["orders"], (OI["sky"], OI["blue"], OI["green"], OI["verm"])): e = np.maximum(np.array(E["err"][str(o)]), 1e-8); a.loglog(ks, e, "o-", color=col, ms=3, label=f"order {o}")
@@ -24,7 +24,7 @@ def fig03():
     # (b) support problem
     b = fig.add_subplot(gs[0, 4:6]); T3 = MISC["toy3"]; al = np.array([r["alpha"] for r in T3])
     for l, col in zip(range(1, 9), plt.cm.viridis(np.linspace(0, 0.95, 8))): b.semilogx(al, [r["P"][str(l)] for r in T3], "-", color=col, lw=0.9, label=f"$l={l}$")
-    b.set_xlabel(r"regularisation $\alpha$"); b.set_ylabel("power fraction $P_l$"); b.legend(frameon=False, fontsize=5, ncol=2, loc="upper left"); b2 = b.twinx(); b2.semilogx(al, [r["nll_excess"] for r in T3], "k--", lw=1.0); b2.set_ylabel("NLL excess (nats, dashed)"); b2.spines["right"].set_visible(True); panel(b, "b", dx=0.0)
+    b.set_xlabel(r"regularisation $\alpha$"); b.set_ylabel("power fraction $P_l$"); b.legend(frameon=False, fontsize=5, ncol=2, loc="center left", bbox_to_anchor=(0.0, 0.47)); b2 = b.twinx(); b2.semilogx(al, [r["nll_excess"] for r in T3], "k--", lw=1.0); b2.set_ylabel("NLL excess (nats, dashed)"); b2.spines["right"].set_visible(True); panel(b, "b", dx=0.0)
     # (c) estimators
     c = fig.add_subplot(gs[1, 0:3]); T1 = MISC["toy1"]
     for s2, mk in ((0.01, "o"), (0.04, "s")):
@@ -49,9 +49,9 @@ def fig_s2():
     import analytic_ms as ms
     fig, ax = plt.subplots(1, 3, figsize=(W2, 2.4)); T1 = MISC["toy1"]; a = ax[0]; pred = np.array([-18 / 35 * r["a2"] ** 2 * r["s2_true"] for r in T1]); fit = np.array([r["a4_fit"] for r in T1])
     for r, p, f_ in zip(T1, pred, fit): a.plot(p, f_, "o" if r["a2"] <= 4 else "x", color=OI["blue"] if r["a2"] <= 4 else OI["verm"], ms=4)
-    lim = [-0.8, 0.1]; a.plot(lim, lim, "k--", lw=0.7); a.set_xlim(lim); a.set_xlabel(r"predicted $a_4=-\frac{18}{35}a_2^2\sigma^2$"); a.set_ylabel(r"fitted $a_4$ (L=8)"); a.set_ylim(-0.8, 0.1); a.text(0.03, 0.97, "● $a_2\\leq4$ (valid)\n$a_2\\geq8$: outside the plot\n(fit not valid, see Fig. 3c)", transform=a.transAxes, fontsize=5.6, va="top"); panel(a, "a")
-    tt, ss = ms.ms_curve(); tt = tt / 6; b = ax[1]; b.plot(tt, ss, color=OI["blue"]); b.set_xlabel(r"$t=T/(zJ)$"); b.set_ylabel("mean-field $S$"); b.axvline(0.2202, color="k", ls=":", lw=0.7); b.text(0.2185, 0.05, "$t_{NI}=0.2202$", fontsize=6, rotation=90, ha="right"); panel(b, "b")
-    c = ax[2]; c.plot(tt, ss / tt, color=OI["blue"], label=r"mean-field $a_2=S/t$"); ORA = load("results/oracle.json"); c.plot([r["T"] / 6 for r in ORA if r["T"] <= 1.1], [r["a2"] for r in ORA if r["T"] <= 1.1], "o", color=OI["verm"], ms=3.5, label=r"MC fit $a_2$ (smeared)"); c.set_xlabel(r"$t=T/(zJ)$"); c.set_ylabel("$a_2$"); c.legend(frameon=False, fontsize=6); panel(c, "c")
+    lim = [-0.8, 0.1]; a.plot(lim, lim, "k--", lw=0.7); a.set_xlim(lim); a.set_xlabel(r"predicted $a_4=-\frac{18}{35}a_2^2\sigma^2$"); a.set_ylabel(r"fitted $a_4$ (L=8)"); a.set_ylim(-0.8, 0.1); a.text(0.97, 0.04, "dots: $a_2\\leq4$\n($a_2\\geq8$: fit not valid,\nsee Fig. 3c)", transform=a.transAxes, fontsize=5.6, va="bottom", ha="right"); panel(a, "a")
+    tt, ss = ms.ms_curve(); tt = tt / 6; b = ax[1]; b.plot(tt, ss, color=OI["blue"]); b.set_xlabel(r"$t=T/(zJ)$"); b.set_ylabel("mean-field $S$"); b.axvline(0.2202, color="k", ls=":", lw=0.7); b.text(0.2185, 0.83, "$t_{NI}=0.2202$", fontsize=6, ha="right", va="top"); panel(b, "b")
+    c = ax[2]; c.plot(tt, ss / tt, color=OI["blue"], label=r"mean-field $a_2=S/t$"); ORA = load("results/oracle.json"); c.plot([r["T"] / 6 for r in ORA if r["T"] <= 1.1], [r["a2"] for r in ORA if r["T"] <= 1.1], "o", color=OI["verm"], ms=3.5, label=r"MC fit $a_2$ (smeared)"); c.set_xlabel(r"$t=T/(zJ)$"); c.set_ylabel("$a_2$"); c.legend(frameon=False, fontsize=6, loc="upper right"); panel(c, "c")
     fig.tight_layout(); savefig(fig, "figS2"); MP["figS2"] = dict(title="Analytic calculations", panels={"a": "misc.json toy1", "b,c": "src/analytic_ms.py (= analytic_ms_heatkernel.py section 1); MC points: results/oracle.json"})
 def fig_s3():
     fig, ax = plt.subplots(1, 2, figsize=(W2, 2.4)); T4 = MISC["toy4"]; Ls = [1, 2, 3, 4, 6, 8, 10, 12]; ref = T4["nll"]["12"]; a = ax[0]; a.semilogy(Ls, [max(T4["nll"][str(L)] - ref, 1e-4) for L in Ls], "o-", color=OI["blue"]); a.set_xticks(Ls); a.set_xlabel("order $L$"); a.set_ylabel("NLL excess over $L=12$ (nats)"); a.annotate("big drop $L=2\\to3$", (3, T4["nll"]["3"] - ref), (5, 1.5), fontsize=6.5, arrowprops=dict(arrowstyle="->", lw=0.6)); panel(a, "a")
@@ -78,18 +78,18 @@ def skl_texture(m0, kind, N=160):
         qh = qs[a] / np.linalg.norm(qs[a]); ph = R @ qs[a] + np.pi; e = np.array([-qh[1], qh[0], 0]) if kind == "bloch" else np.array([qh[0], qh[1], 0]); m += np.cos(ph)[..., None] * np.array([0, 0, 1.0]) + np.sin(ph)[..., None] * e
     m /= np.linalg.norm(m, axis=-1)[..., None]; return R, m
 def fig_s5():
-    fig, ax = plt.subplots(1, 3, figsize=(W2, 2.4)); R, m = skl_texture(0.5, "bloch"); a = ax[0]; im = a.pcolormesh(R[..., 0], R[..., 1], m[..., 2], cmap="RdBu_r", shading="auto", rasterized=True); a.set_aspect("equal"); a.set_xticks([]); a.set_yticks([]); a.set_title(r"Bloch, $m_0=0.5$: $n_z$", fontsize=6.5, pad=10); panel(a, "a")
+    fig, ax = plt.subplots(1, 3, figsize=(W2, 2.4)); R, m = skl_texture(0.5, "bloch"); a = ax[0]; im = a.pcolormesh(R[..., 0], R[..., 1], m[..., 2], cmap="RdBu_r", shading="auto", rasterized=True); a.set_aspect("equal"); a.set_xticks([]); a.set_yticks([]); a.set_title(r"Bloch, $m_0=0.5$: $n_z$", fontsize=6.5, pad=4); panel(a, "a", dx=-0.08, dy=1.0)
     b = ax[1]; S = MISC["skl"]
     for kind, mk, col in (("bloch", "o", OI["blue"]), ("neel", "s", OI["verm"])): rr = [r for r in S if r["kind"] == kind]; b.plot([r["m0"] for r in rr], [r["Y66"] for r in rr], mk + "-", color=col, label=kind.capitalize())
     b.axhline(0, color="k", lw=0.6); b.set_xlabel("$m_0$ (uniform magnetisation)"); b.set_ylabel(r"$\langle Y_{66}\rangle$"); b.legend(frameon=False, fontsize=6); panel(b, "b")
     c = ax[2]; r0 = [r for r in S if r["kind"] == "bloch" and r["m0"] == 0.5][0]; al = [v for k, v in r0["Ylm_abs"].items() if int(k.split(",")[1]) % 6 == 0]; fo = [v for k, v in r0["Ylm_abs"].items() if int(k.split(",")[1]) % 6 != 0]
-    c.semilogy(np.arange(len(fo)), np.maximum(sorted(fo, reverse=True), 1e-17), "o", color=OI["verm"], ms=3, label=r"$m\not\equiv0$ (mod 6): forbidden"); c.semilogy(np.arange(len(al)) + 0.0, np.maximum(sorted(al, reverse=True), 1e-17), "s", color=OI["blue"], ms=4, label=r"$m\equiv0$ (mod 6)"); c.set_xlabel("component (sorted)"); c.set_ylabel(r"$|\langle Y_{lm}\rangle|$, $m\geq0$, $l\leq7$"); c.legend(frameon=False, fontsize=5.5); c.set_ylim(1e-18, 3); panel(c, "c")
+    c.semilogy(np.arange(len(fo)), np.maximum(sorted(fo, reverse=True), 1e-17), "o", color=OI["verm"], ms=3, label=r"$m$ mod 6 $\neq0$ (forbidden)"); c.semilogy(np.arange(len(al)) + 0.0, np.maximum(sorted(al, reverse=True), 1e-17), "s", color=OI["blue"], ms=4, label=r"$m$ mod 6 $=0$"); c.legend(frameon=False, fontsize=6, loc="center right"); c.set_xlabel("component (sorted)"); c.set_ylabel(r"$|\langle Y_{lm}\rangle|$, $m\geq0$, $l\leq7$"); c.legend(frameon=False, fontsize=5.5); c.set_ylim(1e-18, 3); panel(c, "c")
     fig.tight_layout(); savefig(fig, "figS5"); MP["figS5"] = dict(title="Triple-q skyrmion lattice moments", panels={"a": "texture recomputed in figure code (same construction as analytic_pyrochlore_skl.py)", "b,c": "misc.json skl (Q=-1 for all; <Y66> Bloch -0.0222/-0.0117/-0.0063 for m0=0/0.5/1, Neel opposite sign = Appendix A)"})
 def fig_s6():
     from cfg_terms import block_frames
     fig = plt.figure(figsize=(W2, 3.0)); gs = fig.add_gridspec(1, 2, width_ratios=[1.25, 0.9], wspace=0.28); a = fig.add_subplot(gs[0]); a.axis("off"); a.set_xlim(0, 12); a.set_ylim(0, 8)
-    rows = [("none", "trivial: frame returns to itself", OI["green"]), (r"Z$_2$", "returns up to $-1$ in the double cover", OI["sky"]), (r"C$_3$", "triad relabelled cyclically (1/3 vortex)", OI["orange"]), (r"C$_2$", "plane normal reversed (1/2 dislocation)", OI["verm"])]
-    a.text(0, 7.4, "classification in the binary dihedral group $2D_3$", fontsize=6.8, fontweight="bold")
+    rows = [("none", "trivial: frame returns to itself", OI["green"]), (r"Z$_2$", "returns up to $-1$ in the double cover", OI["sky"]), (r"C$_3$", "triad relabelled cyclically (third-vortex)", OI["orange"]), (r"C$_2$", "plane normal reversed (half-disclination)", OI["verm"])]
+    a.text(0.6, 7.4, "classification in the binary dihedral group $2D_3$", fontsize=6.8, fontweight="bold")
     for i, (n, d, col) in enumerate(rows): y = 6.2 - 1.55 * i; a.add_patch(plt.Rectangle((0, y - 0.45), 1.5, 1.0, color=col, alpha=0.5, lw=0)); a.text(0.75, y + 0.05, n, ha="center", va="center", fontsize=7); a.text(1.7, y + 0.05, d, va="center", fontsize=5.8)
     a.text(0, 0.2, "Frame per block: $\\nu$ = min. eigenvector of $Q$, triad phase $\\arg\\langle e^{3i\\phi}\\rangle/3$;\ncandidates $\\pm$, 3 cyclic phases; lift along the loop of 4 blocks.", fontsize=5.8); panel(a, "a", dx=0.0, dy=0.95)
     b = fig.add_subplot(gs[1]); L = 12; x, y = np.meshgrid(np.arange(L), np.arange(L), indexing="ij"); res = {}
