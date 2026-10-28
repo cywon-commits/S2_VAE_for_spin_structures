@@ -1,0 +1,1 @@
+for r in results/v5a/v5a_T1.05o_R4_b1.pt results/v3h/v3h_T1.05o_R4_b1.pt results/v5a/v5a_T1.05o_R2_b1.pt results/v3h/v3h_T1.05o_R2_b1.pt results/v3h/v3h_T0.95o_R4_b1.pt results/v3h/v3h_T0.95o_R2_b1.pt; do OMP_NUM_THREADS=1 python3 run_E6_B.py $r 100 150 12; done

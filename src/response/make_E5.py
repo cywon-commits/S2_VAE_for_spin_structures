@@ -8,16 +8,17 @@ scan = json.load(open(f"{HE}/out/scan_summary.json"))
 fig, ax = plt.subplots(1, 2, figsize=(10, 3.8), gridspec_kw=dict(width_ratios=[1.6, 1]))
 for T, c in ((0.001, "k"), (0.005, "0.5")):
     S = [s for s in scan if s["T"] == T]; ax[0].plot([s["h"] for s in S], [s["m"] for s in S], "o", ms=3.5, color=c, label=f"MC T={T}")
-hh = np.linspace(0, 6.5, 100); ax[0].plot(hh, np.minimum(hh / 6, 1), "k--", lw=0.7)
+hh = np.logspace(-6, np.log10(6.5), 300); ax[0].plot(hh, np.minimum(hh / 6, 1), "k--", lw=0.7, label="T=0 / MC: m=h/6")
+LBL = lambda n: {"kag": "R=1", "kagu": "R="+n.split("_R")[-1], "kag6": "R="+n.split("_R")[-1]+" (kag6)"}[n.split("_")[0]]
 cols = {"kag_T0.0005_R1": "C0", "kagu_T0.0005_R4": "C1", "kag6_T0.0005_R4": "C2", "kagu_T0.0005_R12": "C3"}
 for f in sorted(glob.glob(f"{RS}/B_kag*_T0.0005_*.npz")):
     name = os.path.basename(f)[2:-4]; r = ana(f); h = np.array([x["h"] for x in r]); m = np.array([x["m_plot"] for x in r]); e = np.array([x["ess"] for x in r]); c = cols.get(name, "C4")
-    ok = e >= 100; ax[0].plot(h[ok], m[ok], "-o", ms=3, color=c, label=f"VAE {name[4:]}"); ax[0].plot(h[~ok], m[~ok], ":", color=c, lw=1)
+    ok = e >= 100; ax[0].plot(h[ok], m[ok], "-o", ms=3, color=c, label=f"VAE reweight {LBL(name)}"); ax[0].plot(h[~ok], m[~ok], ":", color=c, lw=1)
     ax[1].plot(h[ok], m[ok], "-o", ms=3, color=c)
     ax[1].plot(h[~ok], m[~ok], ":", color=c, lw=1)
 for f in sorted(glob.glob(f"{RS}/Bmc_kag*_T0.0005_*.json")):
     name = os.path.basename(f)[4:-5]; d = json.load(open(f)); c = cols.get(name, "C4")
-    ax[0].plot([r["h"] for r in d], [r["m"] for r in d], "x", ms=6, color=c, label=f"VAE HMC {name[4:]}")
+    ax[0].plot([r["h"] for r in d], [r["m"] for r in d], "x", ms=6, color=c, label=f"VAE HMC {LBL(name)}")
 for S_ in [s_ for s_ in scan if s_["T"] == 0.001]:
     pass
 ax[0].axvspan(1e-6, 1.5e-5, color="C2", alpha=0.08)
@@ -29,9 +30,9 @@ for T, c in ((0.001, "k"), (0.005, "0.5")):
     S = [s_ for s_ in scan if s_["T"] == T]; ax.plot([s_["h"] for s_ in S], [s_["nu_h2"] for s_ in S], "o-", ms=3, color=c, label=f"MC T={T}")
 for f in sorted(glob.glob(f"{RS}/B_kag*_T0.0005_*.npz")):
     name = os.path.basename(f)[2:-4]; r = ana(f); c = cols.get(name, "C4"); h = np.array([x["h"] for x in r]); v = np.array([x["nuh2"] for x in r]); e = np.array([x["ess"] for x in r])
-    ax.plot(h[e >= 100], v[e >= 100], "-o", ms=3, color=c, label=f"VAE {name[4:]} (ESS>=100)")
+    ax.plot(h[e >= 100], v[e >= 100], "-o", ms=3, color=c, label=f"VAE {LBL(name)} (ESS>=100)")
 for f in sorted(glob.glob(f"{RS}/Bmc_kag*_T0.0005_*.json")):
-    name = os.path.basename(f)[4:-5]; d = json.load(open(f)); ax.plot([r["h"] for r in d], [r["nuh2"] for r in d], "x", color=cols.get(name, "C4"), label=f"VAE HMC {name[4:]}")
+    name = os.path.basename(f)[4:-5]; d = json.load(open(f)); ax.plot([r["h"] for r in d], [r["nuh2"] for r in d], "x", color=cols.get(name, "C4"), label=f"VAE HMC {LBL(name)}")
 ax.axhline(1 / 3, color="gray", lw=0.6, ls=":"); ax.set_xscale("log"); ax.set_xlabel("h / J"); ax.set_ylabel(r"$\langle(\hat\nu\cdot\hat h)^2\rangle$"); ax.legend(frameon=False, fontsize=6); fig.tight_layout(); fig.savefig(f"{ROOT}/figures/E5/fig3_nu_h2.png", dpi=150)
 # ---------------- Fig 2: chi_VAE / chi_FDT
 A = json.load(open(f"{RS}/A_kag.json")); N = json.load(open(f"{RS}/A_nem.json"))
