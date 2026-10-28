@@ -1,0 +1,10 @@
+kagu_T0.0005_R12.pt {'prior': (9473.7, 2367.16), 'posterior': (336.33, 98.39)} 738s
+kag6_T0.0005_R4.pt {'prior': (2873.15, 1071.44), 'posterior': (981.55, 204.65)} 434s
+kag6u_T0.0005_R4_nolatent.pt {'prior': (75.89, 105.66), 'posterior': (76.16, 105.66)} 390s
+kag6u_T0.0005_R4_oracle.pt {'posterior': (30.78, 146.71)} 142s
+kag_T0.0020_R1.pt {'prior': (343.93, 186.87), 'posterior': (219.41, 93.18)} 46s
+kag6_T0.0020_R1.pt {'prior': (305.4, 182.71), 'posterior': (208.28, 91.53)} 276s
+kagu_T0.0020_R3.pt {'prior': (554.38, 200.11), 'posterior': (216.31, 94.88)} 240s
+kagu_T0.0020_R4.pt {'prior': (576.91, 217.17), 'posterior': (211.92, 94.61)} 108s
+kagu_T0.0020_R6.pt {'prior': (532.31, 214.56), 'posterior': (194.13, 90.57)} 163s
+kagu_T0.0020_R12.pt {'prior': (313.86, 166.67), 'posterior': (80.82, 46.5)} 545s

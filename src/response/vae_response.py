@@ -78,7 +78,10 @@ def val_data(T):
     return _VAL[T]
 def sample_posterior(m, nrep, gen):
     """z ~ q(z|n_data) for the validation seeds (160 snapshots), nrep draws each; returns z [160*nrep,C,64] (+ u for kind 6u)."""
-    S, U = val_data(m.T); F = kag_features(S, m.R); mu_c, lv_c = m.encode(F); zs = []; us = []
+    S, U = val_data(m.T); mus = []; lvs = []
+    with torch.no_grad():
+        for i in range(0, len(S), 40): a_, b_ = m.encode(kag_features(S[i:i + 40], m.R)); mus.append(a_); lvs.append(b_)
+    mu_c, lv_c = torch.cat(mus), torch.cat(lvs); zs = []; us = []
     for _ in range(nrep):
         e = torch.randn(mu_c.shape, generator=gen); zs.append(mu_c + e * torch.exp(0.5 * m.expand_logvar(lv_c)))
     z = torch.cat(zs)

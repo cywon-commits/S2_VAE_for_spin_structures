@@ -16,7 +16,7 @@ def make(m, B):
     return logpost, lam_of
 def obs(m, lam, h):
     mult = mult_of(m); beta = 1 / m.T; d = zeeman_shift(torch.tensor([0., 0., h]), beta)
-    _, M = site_moments(lam.detach().double() + d); _, S = site_moments(lam.detach()); Ssum = mult * S.sum((1, 2)); w, V = torch.linalg.eigh(Ssum)
+    M, _ = site_moments(lam.detach().double() + d); _, S = site_moments(lam.detach()); Ssum = mult * S.sum((1, 2)); w, V = torch.linalg.eigh(Ssum)
     return (mult * M[..., 2].sum((1, 2)) / N_SITES).numpy(), (V[:, 2, 0] ** 2).numpy()
 def hmc(m, h, nwarm, nsamp, B, gen, nleap=15):
     logpost, lam_of = make(m, B); C = m.R ** 2
@@ -50,7 +50,7 @@ def hmc(m, h, nwarm, nsamp, B, gen, nleap=15):
     mt = np.array(mt); nt = np.array(nt)
     x = mt.mean(1) - mt.mean(); n = len(x); ac = [np.sum(x[:n - k] * x[k:]) / np.sum(x * x) for k in range(1, min(100, n // 2))]; tau_int = 1 + 2 * np.sum(np.array(ac)[: next((i for i, v in enumerate(ac) if v < 0.05), len(ac))])
     # per-chain spread of the means as a convergence diagnostic
-    return dict(h=h, m=float(mt[len(mt) // 2:].mean()), m_chain_sd=float(mt[len(mt) // 2:].mean(0).std()), nuh2=float(nt[len(nt) // 2:].mean()), acc=float(np.mean(accs)), eps=float(eps), tau_int=float(tau_int), n_obs=len(mt))
+    return dict(h=h, m=float(mt[len(mt) // 2:].mean()), m_chain_sd=float(mt[len(mt) // 2:].mean(0).std()), m_chains=np.round(np.asarray(mt[len(mt) // 2:].mean(0)).ravel(), 4).tolist(), m_first=np.round(np.asarray(mt[0]).ravel(), 4).tolist(), nuh2=float(nt[len(nt) // 2:].mean()), acc=float(np.mean(accs)), eps=float(eps), tau_int=float(tau_int), n_obs=len(mt))
 if __name__ == "__main__":
     run = sys.argv[1]; nwarm = int(sys.argv[2]) if len(sys.argv) > 2 else 300; nsamp = int(sys.argv[3]) if len(sys.argv) > 3 else 400; B = int(sys.argv[4]) if len(sys.argv) > 4 else 16
     m = load_kag(f"{ROOT}/results/kag/{run}"); out = []; gen = torch.Generator().manual_seed(3)
