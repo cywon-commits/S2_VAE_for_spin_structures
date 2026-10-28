@@ -16,7 +16,7 @@ for T in (0.95, 1.05):
 sl = ["| T | easy-axis slope dS/dD (D=0.01→0.05) | easy-plane slope dS/d|D| (0.01→0.05) = χ_Q/2 | 2× easy-plane | χ_Q FDT |", "|---|---|---|---|---|"]
 for T in (0.95, 1.05):
     C = loadC(T); a = (C[0.05]["S"][0] - C[0.01]["S"][0]) / 0.04; b = (C[-0.05]["S"][0] - C[-0.01]["S"][0]) / 0.04 * -1 * -1; b = (C[-0.05]["S"][0] - C[-0.01]["S"][0]) / 0.04
-    sl.append(f"| {T} | {a:.2f} | {-b:.2f} | {-2*b:.2f} | {SITE[T]['Q']:.2f} |")
+    sl.append(f"| {T} | {a:.2f} | {b:.2f} | {2*b:.2f} | {SITE[T]['Q']:.2f} |")
 hm = ["| model | R | D | S (HMC) | ⟨P₂(d·e)⟩ | ⟨B⟩ | acc. | τ_int | chain-sd (S/A/B) | S (reweight, ESS) |", "|---|---|---|---|---|---|---|---|---|---|"]
 for f in sorted(glob.glob(f"{RS}/E6_B_*.json")):
     d = json.load(open(f)); rw = {r["D"]: r for r in d.get("reweight", [])}
